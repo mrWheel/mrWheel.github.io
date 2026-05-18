@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mrWheel | GitHub Pages</title>
+  <meta name="description" content="A landing page for @mrWheel with quick access to public GitHub repositories.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f172a;
+      --bg-accent: rgba(59, 130, 246, 0.18);
+      --panel: rgba(15, 23, 42, 0.78);
+      --panel-border: rgba(148, 163, 184, 0.16);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --brand: #60a5fa;
+      --brand-strong: #38bdf8;
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 38%),
+        radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.18), transparent 28%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 3rem 0 4rem;
+    }
+
+    .hero,
+    .repos {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero {
+      display: grid;
+      gap: 2rem;
+      padding: 3rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8rem -8rem auto;
+      width: 18rem;
+      height: 18rem;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 72%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(96, 165, 250, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      color: var(--brand);
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0.75rem 0 1rem;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      line-height: 1.02;
+    }
+
+    .lead {
+      max-width: 42rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions,
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 3rem;
+      padding: 0 1.25rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible,
+    .repo-card:hover,
+    .repo-card:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+      color: #020617;
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: rgba(15, 23, 42, 0.35);
+    }
+
+    .hero-stat {
+      min-width: 10rem;
+      padding: 1rem 1.1rem;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-stat span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .repos {
+      margin-top: 2rem;
+      padding: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+    }
+
+    .section-header p {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+    }
+
+    #repo-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      padding: 0;
+      list-style: none;
+      margin: 0;
+    }
+
+    .repo-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-height: 100%;
+      padding: 1.35rem;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      background: rgba(15, 23, 42, 0.62);
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .repo-card:hover,
+    .repo-card:focus-visible {
+      border-color: rgba(96, 165, 250, 0.45);
+      background: rgba(15, 23, 42, 0.75);
+    }
+
+    .repo-card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .repo-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .repo-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .repo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.16);
+    }
+
+    .status {
+      color: var(--muted);
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px dashed rgba(148, 163, 184, 0.24);
+      background: rgba(15, 23, 42, 0.35);
+    }
+
+    .status[hidden] {
+      display: none;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 1rem, 1100px);
+        padding-top: 1rem;
+      }
+
+      .hero,
+      .repos {
+        padding: 1.4rem;
+        border-radius: 22px;
+      }
+
+      .section-header {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">GitHub Pages</span>
+        <h1>Hi, I’m <span>@mrWheel</span>.</h1>
+        <p class="lead">
+          Welcome to my GitHub landing page. Browse my public repositories, explore what I’m building,
+          and jump straight into the code.
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <a class="button button-primary" href="https://github.com/mrWheel" target="_blank" rel="noreferrer">Visit GitHub Profile</a>
+        <a class="button button-secondary" href="#repositories">Browse Repositories</a>
+      </div>
+
+      <div class="hero-stats" aria-label="Repository statistics">
+        <div class="hero-stat">
+          <strong id="repo-count">—</strong>
+          <span>Public repositories</span>
+        </div>
+        <div class="hero-stat">
+          <strong id="language-count">—</strong>
+          <span>Languages in this list</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="repos" id="repositories">
+      <div class="section-header">
+        <div>
+          <h2>Public repositories</h2>
+          <p>Fetched live from GitHub with a bundled fallback snapshot for reliability.</p>
+        </div>
+        <a class="button button-secondary" href="https://github.com/mrWheel?tab=repositories" target="_blank" rel="noreferrer">See all on GitHub</a>
+      </div>
+
+      <p class="status" id="repo-status">Loading repositories…</p>
+      <ul id="repo-list" aria-live="polite"></ul>
+      <noscript>
+        <p class="status">JavaScript is required to load repository cards automatically. You can still view all repositories on <a href="https://github.com/mrWheel?tab=repositories" target="_blank" rel="noreferrer">GitHub</a>.</p>
+      </noscript>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const username = "mrWheel";
+      const fallbackRepos = [
+  {
+    "name": "mrWheel.github.io",
+    "html_url": "https://github.com/mrWheel/mrWheel.github.io",
+    "description": "Index Page for github Pages",
+    "language": null,
+    "stargazers_count": 0,
+    "updated_at": "2026-05-18T11:12:06Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "TFT_LCD_Display_EC11_Board",
+    "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_Board",
+    "description": "Piggy Back Board voor TFT LCD Display with EC11 Rotary Encoder",
+    "language": "OpenSCAD",
+    "stargazers_count": 0,
+    "updated_at": "2026-05-18T10:26:06Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ultimateTimer",
+    "html_url": "https://github.com/mrWheel/ultimateTimer",
+    "description": null,
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2026-05-16T13:35:45Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DSMRloggerAPI",
+    "html_url": "https://github.com/mrWheel/DSMRloggerAPI",
+    "description": "Firmware for the DSMR-logger using only API call's",
+    "language": "C++",
+    "stargazers_count": 19,
+    "updated_at": "2026-04-19T06:43:05Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "softPowerLatch",
+    "html_url": "https://github.com/mrWheel/softPowerLatch",
+    "description": null,
+    "language": null,
+    "stargazers_count": 0,
+    "updated_at": "2026-04-17T06:54:22Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "deskAerosolSensor",
+    "html_url": "https://github.com/mrWheel/deskAerosolSensor",
+    "description": null,
+    "language": "OpenSCAD",
+    "stargazers_count": 0,
+    "updated_at": "2026-04-17T06:39:04Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "templateRepo",
+    "html_url": "https://github.com/mrWheel/templateRepo",
+    "description": "A dummy Repo with scripts for all real Repo\u2019s",
+    "language": "Python",
+    "stargazers_count": 0,
+    "updated_at": "2026-04-10T11:30:12Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "kicad_localizer",
+    "html_url": "https://github.com/mrWheel/kicad_localizer",
+    "description": "Create a local_kicad library and rename all references to this local_library",
+    "language": "Python",
+    "stargazers_count": 0,
+    "updated_at": "2026-04-03T13:30:41Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "boxGenerator",
+    "html_url": "https://github.com/mrWheel/boxGenerator",
+    "description": null,
+    "language": "Python",
+    "stargazers_count": 0,
+    "updated_at": "2026-03-21T13:51:08Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "handheldAerosolSensor",
+    "html_url": "https://github.com/mrWheel/handheldAerosolSensor",
+    "description": null,
+    "language": "OpenSCAD",
+    "stargazers_count": 0,
+    "updated_at": "2026-03-13T17:04:24Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "3DP-Stencil-Generator",
+    "html_url": "https://github.com/mrWheel/3DP-Stencil-Generator",
+    "description": null,
+    "language": "Python",
+    "stargazers_count": 0,
+    "updated_at": "2026-03-02T10:07:12Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "espressifBlink",
+    "html_url": "https://github.com/mrWheel/espressifBlink",
+    "description": null,
+    "language": "Python",
+    "stargazers_count": 0,
+    "updated_at": "2026-02-28T12:27:36Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DSMRlogger32",
+    "html_url": "https://github.com/mrWheel/DSMRlogger32",
+    "description": "Verbeterde versie van de DSMRloggerAPI firmware voor een ESP32-microprocessor",
+    "language": "HTML",
+    "stargazers_count": 0,
+    "updated_at": "2026-02-25T15:05:23Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "espTicker32",
+    "html_url": "https://github.com/mrWheel/espTicker32",
+    "description": "A News/Weather/LocalMessages ticker for the ESP32",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2026-02-24T09:50:28Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "mqttAerosolSensor",
+    "html_url": "https://github.com/mrWheel/mqttAerosolSensor",
+    "description": null,
+    "language": "OpenSCAD",
+    "stargazers_count": 0,
+    "updated_at": "2026-02-23T13:00:41Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "safeTimers",
+    "html_url": "https://github.com/mrWheel/safeTimers",
+    "description": null,
+    "language": "C",
+    "stargazers_count": 0,
+    "updated_at": "2026-02-03T10:09:52Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "sqliteServer",
+    "html_url": "https://github.com/mrWheel/sqliteServer",
+    "description": null,
+    "language": "C",
+    "stargazers_count": 0,
+    "updated_at": "2026-01-21T14:26:30Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "PixelFlow",
+    "html_url": "https://github.com/mrWheel/PixelFlow",
+    "description": null,
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2026-01-13T10:49:14Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "espMorseMachine",
+    "html_url": "https://github.com/mrWheel/espMorseMachine",
+    "description": null,
+    "language": "Python",
+    "stargazers_count": 0,
+    "updated_at": "2025-11-10T10:22:44Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "YAPP_Box",
+    "html_url": "https://github.com/mrWheel/YAPP_Box",
+    "description": "Yet Another Parametric Projectbox Box",
+    "language": "OpenSCAD",
+    "stargazers_count": 486,
+    "updated_at": "2026-05-17T15:17:40Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "microPythonModules",
+    "html_url": "https://github.com/mrWheel/microPythonModules",
+    "description": null,
+    "language": "Python",
+    "stargazers_count": 0,
+    "updated_at": "2025-08-18T15:25:31Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "virtualP1Cable",
+    "html_url": "https://github.com/mrWheel/virtualP1Cable",
+    "description": null,
+    "language": "OpenSCAD",
+    "stargazers_count": 0,
+    "updated_at": "2025-07-12T13:07:07Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "arduinoIDE2platformIO-convertor",
+    "html_url": "https://github.com/mrWheel/arduinoIDE2platformIO-convertor",
+    "description": "This program converts an ArduinoIDE project to a PlatformIO project structure",
+    "language": "Python",
+    "stargazers_count": 35,
+    "updated_at": "2026-04-29T19:55:46Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "SPAmanager",
+    "html_url": "https://github.com/mrWheel/SPAmanager",
+    "description": null,
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "updated_at": "2025-05-14T14:27:56Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "esp-networking",
+    "html_url": "https://github.com/mrWheel/esp-networking",
+    "description": null,
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2025-05-03T13:50:01Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "espTicker32_NeoPixels",
+    "html_url": "https://github.com/mrWheel/espTicker32_NeoPixels",
+    "description": null,
+    "language": "C",
+    "stargazers_count": 0,
+    "updated_at": "2025-04-29T13:25:48Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "esp-fsmanager",
+    "html_url": "https://github.com/mrWheel/esp-fsmanager",
+    "description": null,
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "updated_at": "2025-04-17T13:39:19Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "openTherm_TestSuite",
+    "html_url": "https://github.com/mrWheel/openTherm_TestSuite",
+    "description": null,
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2025-01-25T11:48:08Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "KIM_TapeDevice",
+    "html_url": "https://github.com/mrWheel/KIM_TapeDevice",
+    "description": "A solid state tape device for the (micro)KIM-1",
+    "language": "HTML",
+    "stargazers_count": 13,
+    "updated_at": "2024-12-25T00:20:19Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ESP_ticker",
+    "html_url": "https://github.com/mrWheel/ESP_ticker",
+    "description": "A ticker display leaning heavily on the MD_Parola library by Marco Colli",
+    "language": "C++",
+    "stargazers_count": 3,
+    "updated_at": "2024-11-10T12:47:27Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "aixun_t3x_updater",
+    "html_url": "https://github.com/mrWheel/aixun_t3x_updater",
+    "description": "This is a clone of the t3x_updater from Michael Niew\u00f6hner (c0d3z3r0)",
+    "language": "Python",
+    "stargazers_count": 1,
+    "updated_at": "2026-01-15T23:34:12Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "TimeSyncLib",
+    "html_url": "https://github.com/mrWheel/TimeSyncLib",
+    "description": null,
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2024-09-02T11:57:21Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "pulseGenerators",
+    "html_url": "https://github.com/mrWheel/pulseGenerators",
+    "description": "Simple pulgenerators for testing",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2022-12-01T14:46:29Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "platformIO2arduinoIDE-convertor",
+    "html_url": "https://github.com/mrWheel/platformIO2arduinoIDE-convertor",
+    "description": "A PlatformIO to ArduinoIDE convertor",
+    "language": "C++",
+    "stargazers_count": 7,
+    "updated_at": "2026-01-30T20:56:02Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "IDE-convertors",
+    "html_url": "https://github.com/mrWheel/IDE-convertors",
+    "description": "Convert an ArduinoIDE project to PlatformIO and visa versa",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2024-07-26T14:45:25Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "weerliveClass",
+    "html_url": "https://github.com/mrWheel/weerliveClass",
+    "description": null,
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2024-07-19T13:50:09Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "arduino-dsmr-be",
+    "html_url": "https://github.com/mrWheel/arduino-dsmr-be",
+    "description": "dsmr parser for Belgium",
+    "language": "C++",
+    "stargazers_count": 3,
+    "updated_at": "2026-01-20T19:43:25Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "WT32-ETH01-Templates",
+    "html_url": "https://github.com/mrWheel/WT32-ETH01-Templates",
+    "description": "Templates for the WT32-ETH01 (Ethernet) Board",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2024-03-02T13:43:07Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "wandLamp",
+    "html_url": "https://github.com/mrWheel/wandLamp",
+    "description": null,
+    "language": "OpenSCAD",
+    "stargazers_count": 0,
+    "updated_at": "2023-09-24T12:41:02Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "SmInrushBooster",
+    "html_url": "https://github.com/mrWheel/SmInrushBooster",
+    "description": null,
+    "language": "OpenSCAD",
+    "stargazers_count": 0,
+    "updated_at": "2023-08-25T12:27:25Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "acrylDisplay",
+    "html_url": "https://github.com/mrWheel/acrylDisplay",
+    "description": null,
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2023-08-10T10:05:09Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DSMRloggerWS",
+    "html_url": "https://github.com/mrWheel/DSMRloggerWS",
+    "description": "New firmware for the DSMRlogger heavily using WebSockets and Javascript",
+    "language": "HTML",
+    "stargazers_count": 31,
+    "updated_at": "2023-08-26T19:24:53Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DSMRinjector",
+    "html_url": "https://github.com/mrWheel/DSMRinjector",
+    "description": "A Slimme Meter Emulator",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2022-02-13T16:13:03Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ESPotifyEcho",
+    "html_url": "https://github.com/mrWheel/ESPotifyEcho",
+    "description": "A different way to listen to music",
+    "language": "C++",
+    "stargazers_count": 1,
+    "updated_at": "2026-03-30T00:58:24Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "LittleFS_SysLogger",
+    "html_url": "https://github.com/mrWheel/LittleFS_SysLogger",
+    "description": null,
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2022-12-18T18:00:59Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "SPIFFS_SysLogger",
+    "html_url": "https://github.com/mrWheel/SPIFFS_SysLogger",
+    "description": "A logger library for the ESP32 and ESP8266 micro chips",
+    "language": "C++",
+    "stargazers_count": 1,
+    "updated_at": "2023-02-02T13:49:35Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "FloorTempMonitor",
+    "html_url": "https://github.com/mrWheel/FloorTempMonitor",
+    "description": "FloorTempMonitor",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2022-03-22T12:23:13Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DSMRloggerAPI-DOCS",
+    "html_url": "https://github.com/mrWheel/DSMRloggerAPI-DOCS",
+    "description": "To synchronize with gitBook",
+    "language": null,
+    "stargazers_count": 0,
+    "updated_at": "2022-07-11T14:28:43Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ESP2RFlink",
+    "html_url": "https://github.com/mrWheel/ESP2RFlink",
+    "description": "A bridge from RFlink to internet and MQTT",
+    "language": "C++",
+    "stargazers_count": 1,
+    "updated_at": "2026-03-30T00:59:25Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "cmdParser",
+    "html_url": "https://github.com/mrWheel/cmdParser",
+    "description": "Command Parser over Monitor, Telnet and TCP",
+    "language": "C",
+    "stargazers_count": 0,
+    "updated_at": "2022-04-24T10:13:40Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "Pinger",
+    "html_url": "https://github.com/mrWheel/Pinger",
+    "description": "Pings network and reports status by Telegrambot",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2022-04-11T11:16:53Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DSMRrecorder",
+    "html_url": "https://github.com/mrWheel/DSMRrecorder",
+    "description": "Sketch to capture and write to a file the stream from the Slimme Meter",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2022-04-14T15:21:00Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ESP32FSmanager",
+    "html_url": "https://github.com/mrWheel/ESP32FSmanager",
+    "description": "This is work in progress",
+    "language": "Assembly",
+    "stargazers_count": 0,
+    "updated_at": "2022-03-26T12:38:55Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "kicad-packages3D",
+    "html_url": "https://github.com/mrWheel/kicad-packages3D",
+    "description": null,
+    "language": "CMake",
+    "stargazers_count": 1,
+    "updated_at": "2022-03-01T08:25:12Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "currRngrReader",
+    "html_url": "https://github.com/mrWheel/currRngrReader",
+    "description": null,
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "updated_at": "2021-08-10T08:32:29Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ATtester",
+    "html_url": "https://github.com/mrWheel/ATtester",
+    "description": "Simple \"Challenge-Response\" sketch to test (GPRS) modems",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2021-05-31T09:08:58Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ESP8266_Framework",
+    "html_url": "https://github.com/mrWheel/ESP8266_Framework",
+    "description": "A Framework for ESP8266 WiFi projects",
+    "language": "C++",
+    "stargazers_count": 1,
+    "updated_at": "2021-10-18T17:44:23Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "readDSMR-logger",
+    "html_url": "https://github.com/mrWheel/readDSMR-logger",
+    "description": "Skeleton to request data from the DSMR-logger with the DSMRloggerAPI firmware",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2020-09-20T10:20:02Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "I2C_ADW0720",
+    "html_url": "https://github.com/mrWheel/I2C_ADW0720",
+    "description": "Library and Firmware for the I2C_ADW0720 boards",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2020-08-24T10:56:13Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ATtiny85WatchDog",
+    "html_url": "https://github.com/mrWheel/ATtiny85WatchDog",
+    "description": "Using an ATtiny85 as WatchDog for an other processor",
+    "language": "C++",
+    "stargazers_count": 2,
+    "updated_at": "2022-11-23T18:00:41Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "OpenTherm01",
+    "html_url": "https://github.com/mrWheel/OpenTherm01",
+    "description": "4 Erik",
+    "language": "C++",
+    "stargazers_count": 1,
+    "updated_at": "2021-11-01T00:00:25Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "aircoControl_WS",
+    "html_url": "https://github.com/mrWheel/aircoControl_WS",
+    "description": "Controller for an Airco/Heater",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2020-06-09T09:03:45Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "simple_webserver",
+    "html_url": "https://github.com/mrWheel/simple_webserver",
+    "description": "StressTest simple_webserver",
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "updated_at": "2020-05-31T09:01:34Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "I2C_RelaysMux",
+    "html_url": "https://github.com/mrWheel/I2C_RelaysMux",
+    "description": "I2C multiplexer for relay boards with 8 or 16 relays",
+    "language": "C++",
+    "stargazers_count": 1,
+    "updated_at": "2024-07-25T06:30:52Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DONOFF",
+    "html_url": "https://github.com/mrWheel/DONOFF",
+    "description": "DONOFF a WiFi enabled light dimmer",
+    "language": "C++",
+    "stargazers_count": 5,
+    "updated_at": "2020-11-25T06:02:27Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "dummyTest",
+    "html_url": "https://github.com/mrWheel/dummyTest",
+    "description": "dummyTest OTA",
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "updated_at": "2020-03-21T13:34:44Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ESP_SysLogger",
+    "html_url": "https://github.com/mrWheel/ESP_SysLogger",
+    "description": "A system Logger Library for the ESP micro controller chips",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2020-03-19T13:32:57Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DSMRloggerWS-DOCS",
+    "html_url": "https://github.com/mrWheel/DSMRloggerWS-DOCS",
+    "description": "Repository for the DSMRloggerWS firmware in gitBook",
+    "language": null,
+    "stargazers_count": 0,
+    "updated_at": "2020-03-18T12:59:15Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "Easytotrack",
+    "html_url": "https://github.com/mrWheel/Easytotrack",
+    "description": "Tracker for open water rowing boat racers",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2020-02-29T14:48:50Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "testTimerRollover",
+    "html_url": "https://github.com/mrWheel/testTimerRollover",
+    "description": "This program is to test the millis() rollover in just a few seconds ...",
+    "language": "Objective-C",
+    "stargazers_count": 0,
+    "updated_at": "2020-02-25T09:24:02Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "DSMRlogger2HTTP",
+    "html_url": "https://github.com/mrWheel/DSMRlogger2HTTP",
+    "description": "Draadloze Slimme Meter Uitlezer met webserver",
+    "language": "HTML",
+    "stargazers_count": 25,
+    "updated_at": "2025-07-10T18:24:55Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ModUpdateServer",
+    "html_url": "https://github.com/mrWheel/ModUpdateServer",
+    "description": "A modified version of the ESP8266HTTPUpdateServer",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2020-01-10T12:10:32Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "I2C_RE_Tiny841_Slave",
+    "html_url": "https://github.com/mrWheel/I2C_RE_Tiny841_Slave",
+    "description": "Firmware for the I2C Rotary Encoder",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2019-11-29T11:06:58Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "I2C_FTM_Multiplexer",
+    "html_url": "https://github.com/mrWheel/I2C_FTM_Multiplexer",
+    "description": "I2C Multiplexer to connect the FloorTempMonitor Controller with a 16 channel relay board",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2019-11-08T11:25:46Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "I2C_RotaryEncoder_Library",
+    "html_url": "https://github.com/mrWheel/I2C_RotaryEncoder_Library",
+    "description": "Interface for the I2C_RotaryEncoder slave unit",
+    "language": "C++",
+    "stargazers_count": 2,
+    "updated_at": "2021-09-05T14:50:02Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "IR_IoT_Remote",
+    "html_url": "https://github.com/mrWheel/IR_IoT_Remote",
+    "description": "This is a learn project \"how to make a ESP8266 device\"",
+    "language": "C++",
+    "stargazers_count": 2,
+    "updated_at": "2025-06-01T07:47:37Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "arduino-dsmr30",
+    "html_url": "https://github.com/mrWheel/arduino-dsmr30",
+    "description": "Attempt to make the arduino-dsmr library DSMR30 compliant",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2019-07-25T15:07:04Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "KIM-UNO",
+    "html_url": "https://github.com/mrWheel/KIM-UNO",
+    "description": "This work is based on the great work of Oscar Vermeulen",
+    "language": "C++",
+    "stargazers_count": 2,
+    "updated_at": "2025-12-29T11:21:23Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "ISBN-978-94-6345-027-0",
+    "html_url": "https://github.com/mrWheel/ISBN-978-94-6345-027-0",
+    "description": "Zelf Draadloze Sensoren maken",
+    "language": "Arduino",
+    "stargazers_count": 0,
+    "updated_at": "2016-12-13T11:14:10Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "GitTest",
+    "html_url": "https://github.com/mrWheel/GitTest",
+    "description": "A repository just to test Git",
+    "language": "C++",
+    "stargazers_count": 0,
+    "updated_at": "2018-08-28T14:40:07Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "kicad-footprints",
+    "html_url": "https://github.com/mrWheel/kicad-footprints",
+    "description": null,
+    "language": "CMake",
+    "stargazers_count": 0,
+    "updated_at": "2018-08-14T12:10:52Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "kicad-symbols",
+    "html_url": "https://github.com/mrWheel/kicad-symbols",
+    "description": null,
+    "language": "CMake",
+    "stargazers_count": 0,
+    "updated_at": "2018-08-14T12:07:58Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "kicad-templates",
+    "html_url": "https://github.com/mrWheel/kicad-templates",
+    "description": null,
+    "language": "HTML",
+    "stargazers_count": 1,
+    "updated_at": "2021-07-31T11:01:34Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "MultiFunctionalShield",
+    "html_url": "https://github.com/mrWheel/MultiFunctionalShield",
+    "description": "Demo program for the Arduino MultiFunctional Shield",
+    "language": "Arduino",
+    "stargazers_count": 1,
+    "updated_at": "2024-03-06T21:30:13Z",
+    "fork": false,
+    "private": false
+  },
+  {
+    "name": "BeeHave",
+    "html_url": "https://github.com/mrWheel/BeeHave",
+    "description": "A device to log temperature inside a beehive at specific intervals",
+    "language": "Arduino",
+    "stargazers_count": 0,
+    "updated_at": "2023-01-28T17:15:13Z",
+    "fork": false,
+    "private": false
+  }
+];
+      const repoList = document.getElementById("repo-list");
+      const status = document.getElementById("repo-status");
+      const repoCount = document.getElementById("repo-count");
+      const languageCount = document.getElementById("language-count");
+
+      function setStatus(message) {
+        status.hidden = false;
+        status.textContent = message;
+      }
+
+      function clearStatus() {
+        status.hidden = true;
+      }
+
+      function formatUpdatedAt(value) {
+        return new Date(value).toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        });
+      }
+
+      function makePill(label) {
+        const pill = document.createElement("span");
+        pill.className = "repo-pill";
+        pill.textContent = label;
+        return pill;
+      }
+
+      function renderRepository(repo) {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        const title = document.createElement("h3");
+        const description = document.createElement("p");
+        const meta = document.createElement("div");
+
+        link.className = "repo-card";
+        link.href = repo.html_url;
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        link.setAttribute("aria-label", "Open repository " + repo.name);
+
+        title.textContent = repo.name;
+        description.textContent = repo.description || "No description provided.";
+
+        meta.className = "repo-meta";
+        if (repo.language) {
+          meta.appendChild(makePill(repo.language));
+        }
+        if (repo.fork) {
+          meta.appendChild(makePill("Fork"));
+        }
+        meta.appendChild(makePill("★ " + repo.stargazers_count));
+        meta.appendChild(makePill("Updated " + formatUpdatedAt(repo.updated_at)));
+
+        link.append(title, description, meta);
+        item.appendChild(link);
+        return item;
+      }
+
+      function renderRepositories(repos, message) {
+        const publicRepos = repos.filter(function (repo) {
+          return !repo.private;
+        });
+
+        repoList.replaceChildren();
+
+        if (!publicRepos.length) {
+          repoCount.textContent = "0";
+          languageCount.textContent = "0";
+          setStatus("No public repositories were found yet.");
+          return;
+        }
+
+        const languages = new Set();
+        publicRepos.forEach(function (repo) {
+          if (repo.language) {
+            languages.add(repo.language);
+          }
+          repoList.appendChild(renderRepository(repo));
+        });
+
+        repoCount.textContent = String(publicRepos.length);
+        languageCount.textContent = String(languages.size);
+
+        if (message) {
+          setStatus(message);
+          return;
+        }
+
+        clearStatus();
+      }
+
+      fetch("https://api.github.com/users/" + encodeURIComponent(username) + "/repos?per_page=100&sort=updated")
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("Request failed with status " + response.status);
+          }
+          return response.json();
+        })
+        .then(function (repos) {
+          renderRepositories(repos);
+        })
+        .catch(function () {
+          renderRepositories(fallbackRepos, "Showing a bundled repository snapshot.");
+        });
+    }());
+  </script>
+</body>
+</html>
