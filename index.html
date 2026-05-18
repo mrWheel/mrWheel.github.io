@@ -178,13 +178,39 @@
       color: var(--muted);
     }
 
-    #repo-list {
+    .repo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1rem;
       padding: 0;
       list-style: none;
       margin: 0;
+    }
+
+    .repo-group + .repo-group {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--panel-border);
+    }
+
+    .group-title {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .repo-pill-pages {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #047857;
     }
 
     .repo-card {
@@ -306,7 +332,14 @@
       </div>
 
       <p class="status" id="repo-status">Loading repositories…</p>
-      <ul id="repo-list" aria-live="polite"></ul>
+      <div class="repo-group" id="pages-group" hidden>
+        <h3 class="group-title">🌐 Repositories with GitHub Pages</h3>
+        <ul class="repo-grid" id="pages-repo-list" aria-live="polite"></ul>
+      </div>
+      <div class="repo-group" id="other-group" hidden>
+        <h3 class="group-title">Repositories without GitHub Pages</h3>
+        <ul class="repo-grid" id="other-repo-list" aria-live="polite"></ul>
+      </div>
       <noscript>
         <p class="status">JavaScript is required to load repository cards automatically. You can still view all repositories on <a href="https://github.com/mrWheel?tab=repositories" target="_blank" rel="noreferrer">GitHub</a>.</p>
       </noscript>
@@ -325,7 +358,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-05-18T11:12:06Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": true
   },
   {
     "name": "TFT_LCD_Display_EC11_Board",
@@ -335,7 +369,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-05-18T10:26:06Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ultimateTimer",
@@ -345,7 +380,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-05-16T13:35:45Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "DSMRloggerAPI",
@@ -355,7 +391,8 @@
     "stargazers_count": 19,
     "updated_at": "2026-04-19T06:43:05Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "softPowerLatch",
@@ -365,7 +402,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-04-17T06:54:22Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "deskAerosolSensor",
@@ -375,7 +413,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-04-17T06:39:04Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "templateRepo",
@@ -385,7 +424,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-04-10T11:30:12Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "kicad_localizer",
@@ -395,7 +435,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-04-03T13:30:41Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "boxGenerator",
@@ -405,7 +446,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-03-21T13:51:08Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "handheldAerosolSensor",
@@ -415,7 +457,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-03-13T17:04:24Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "3DP-Stencil-Generator",
@@ -425,7 +468,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-03-02T10:07:12Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "espressifBlink",
@@ -435,7 +479,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-02-28T12:27:36Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "DSMRlogger32",
@@ -445,7 +490,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-02-25T15:05:23Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "espTicker32",
@@ -455,7 +501,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-02-24T09:50:28Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "mqttAerosolSensor",
@@ -465,7 +512,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-02-23T13:00:41Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "safeTimers",
@@ -475,7 +523,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-02-03T10:09:52Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "sqliteServer",
@@ -485,7 +534,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-01-21T14:26:30Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "PixelFlow",
@@ -495,7 +545,8 @@
     "stargazers_count": 0,
     "updated_at": "2026-01-13T10:49:14Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "espMorseMachine",
@@ -505,7 +556,8 @@
     "stargazers_count": 0,
     "updated_at": "2025-11-10T10:22:44Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "YAPP_Box",
@@ -515,7 +567,8 @@
     "stargazers_count": 486,
     "updated_at": "2026-05-17T15:17:40Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "microPythonModules",
@@ -525,7 +578,8 @@
     "stargazers_count": 0,
     "updated_at": "2025-08-18T15:25:31Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "virtualP1Cable",
@@ -535,7 +589,8 @@
     "stargazers_count": 0,
     "updated_at": "2025-07-12T13:07:07Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "arduinoIDE2platformIO-convertor",
@@ -545,7 +600,8 @@
     "stargazers_count": 35,
     "updated_at": "2026-04-29T19:55:46Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "SPAmanager",
@@ -555,7 +611,8 @@
     "stargazers_count": 0,
     "updated_at": "2025-05-14T14:27:56Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "esp-networking",
@@ -565,7 +622,8 @@
     "stargazers_count": 0,
     "updated_at": "2025-05-03T13:50:01Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "espTicker32_NeoPixels",
@@ -575,7 +633,8 @@
     "stargazers_count": 0,
     "updated_at": "2025-04-29T13:25:48Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "esp-fsmanager",
@@ -585,7 +644,8 @@
     "stargazers_count": 0,
     "updated_at": "2025-04-17T13:39:19Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "openTherm_TestSuite",
@@ -595,7 +655,8 @@
     "stargazers_count": 0,
     "updated_at": "2025-01-25T11:48:08Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "KIM_TapeDevice",
@@ -605,7 +666,8 @@
     "stargazers_count": 13,
     "updated_at": "2024-12-25T00:20:19Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ESP_ticker",
@@ -615,7 +677,8 @@
     "stargazers_count": 3,
     "updated_at": "2024-11-10T12:47:27Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "aixun_t3x_updater",
@@ -625,7 +688,8 @@
     "stargazers_count": 1,
     "updated_at": "2026-01-15T23:34:12Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "TimeSyncLib",
@@ -635,7 +699,8 @@
     "stargazers_count": 0,
     "updated_at": "2024-09-02T11:57:21Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "pulseGenerators",
@@ -645,7 +710,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-12-01T14:46:29Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "platformIO2arduinoIDE-convertor",
@@ -655,7 +721,8 @@
     "stargazers_count": 7,
     "updated_at": "2026-01-30T20:56:02Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "IDE-convertors",
@@ -665,7 +732,8 @@
     "stargazers_count": 0,
     "updated_at": "2024-07-26T14:45:25Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "weerliveClass",
@@ -675,7 +743,8 @@
     "stargazers_count": 0,
     "updated_at": "2024-07-19T13:50:09Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "arduino-dsmr-be",
@@ -685,7 +754,8 @@
     "stargazers_count": 3,
     "updated_at": "2026-01-20T19:43:25Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "WT32-ETH01-Templates",
@@ -695,7 +765,8 @@
     "stargazers_count": 0,
     "updated_at": "2024-03-02T13:43:07Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "wandLamp",
@@ -705,7 +776,8 @@
     "stargazers_count": 0,
     "updated_at": "2023-09-24T12:41:02Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "SmInrushBooster",
@@ -715,7 +787,8 @@
     "stargazers_count": 0,
     "updated_at": "2023-08-25T12:27:25Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "acrylDisplay",
@@ -725,7 +798,8 @@
     "stargazers_count": 0,
     "updated_at": "2023-08-10T10:05:09Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "DSMRloggerWS",
@@ -735,7 +809,8 @@
     "stargazers_count": 31,
     "updated_at": "2023-08-26T19:24:53Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": true
   },
   {
     "name": "DSMRinjector",
@@ -745,7 +820,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-02-13T16:13:03Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ESPotifyEcho",
@@ -755,7 +831,8 @@
     "stargazers_count": 1,
     "updated_at": "2026-03-30T00:58:24Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "LittleFS_SysLogger",
@@ -765,7 +842,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-12-18T18:00:59Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "SPIFFS_SysLogger",
@@ -775,7 +853,8 @@
     "stargazers_count": 1,
     "updated_at": "2023-02-02T13:49:35Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "FloorTempMonitor",
@@ -785,7 +864,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-03-22T12:23:13Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "DSMRloggerAPI-DOCS",
@@ -795,7 +875,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-07-11T14:28:43Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ESP2RFlink",
@@ -805,7 +886,8 @@
     "stargazers_count": 1,
     "updated_at": "2026-03-30T00:59:25Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "cmdParser",
@@ -815,7 +897,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-04-24T10:13:40Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "Pinger",
@@ -825,7 +908,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-04-11T11:16:53Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "DSMRrecorder",
@@ -835,7 +919,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-04-14T15:21:00Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ESP32FSmanager",
@@ -845,7 +930,8 @@
     "stargazers_count": 0,
     "updated_at": "2022-03-26T12:38:55Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "kicad-packages3D",
@@ -855,7 +941,8 @@
     "stargazers_count": 1,
     "updated_at": "2022-03-01T08:25:12Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "currRngrReader",
@@ -865,7 +952,8 @@
     "stargazers_count": 0,
     "updated_at": "2021-08-10T08:32:29Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ATtester",
@@ -875,7 +963,8 @@
     "stargazers_count": 0,
     "updated_at": "2021-05-31T09:08:58Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ESP8266_Framework",
@@ -885,7 +974,8 @@
     "stargazers_count": 1,
     "updated_at": "2021-10-18T17:44:23Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "readDSMR-logger",
@@ -895,7 +985,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-09-20T10:20:02Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "I2C_ADW0720",
@@ -905,7 +996,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-08-24T10:56:13Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ATtiny85WatchDog",
@@ -915,7 +1007,8 @@
     "stargazers_count": 2,
     "updated_at": "2022-11-23T18:00:41Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "OpenTherm01",
@@ -925,7 +1018,8 @@
     "stargazers_count": 1,
     "updated_at": "2021-11-01T00:00:25Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "aircoControl_WS",
@@ -935,7 +1029,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-06-09T09:03:45Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "simple_webserver",
@@ -945,7 +1040,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-05-31T09:01:34Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "I2C_RelaysMux",
@@ -955,7 +1051,8 @@
     "stargazers_count": 1,
     "updated_at": "2024-07-25T06:30:52Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "DONOFF",
@@ -965,7 +1062,8 @@
     "stargazers_count": 5,
     "updated_at": "2020-11-25T06:02:27Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "dummyTest",
@@ -975,7 +1073,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-03-21T13:34:44Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ESP_SysLogger",
@@ -985,7 +1084,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-03-19T13:32:57Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "DSMRloggerWS-DOCS",
@@ -995,7 +1095,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-03-18T12:59:15Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "Easytotrack",
@@ -1005,7 +1106,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-02-29T14:48:50Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "testTimerRollover",
@@ -1015,7 +1117,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-02-25T09:24:02Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "DSMRlogger2HTTP",
@@ -1025,7 +1128,8 @@
     "stargazers_count": 25,
     "updated_at": "2025-07-10T18:24:55Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": true
   },
   {
     "name": "ModUpdateServer",
@@ -1035,7 +1139,8 @@
     "stargazers_count": 0,
     "updated_at": "2020-01-10T12:10:32Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "I2C_RE_Tiny841_Slave",
@@ -1045,7 +1150,8 @@
     "stargazers_count": 0,
     "updated_at": "2019-11-29T11:06:58Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "I2C_FTM_Multiplexer",
@@ -1055,7 +1161,8 @@
     "stargazers_count": 0,
     "updated_at": "2019-11-08T11:25:46Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "I2C_RotaryEncoder_Library",
@@ -1065,7 +1172,8 @@
     "stargazers_count": 2,
     "updated_at": "2021-09-05T14:50:02Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "IR_IoT_Remote",
@@ -1075,7 +1183,8 @@
     "stargazers_count": 2,
     "updated_at": "2025-06-01T07:47:37Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "arduino-dsmr30",
@@ -1085,7 +1194,8 @@
     "stargazers_count": 0,
     "updated_at": "2019-07-25T15:07:04Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "KIM-UNO",
@@ -1095,7 +1205,8 @@
     "stargazers_count": 2,
     "updated_at": "2025-12-29T11:21:23Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "ISBN-978-94-6345-027-0",
@@ -1105,7 +1216,8 @@
     "stargazers_count": 0,
     "updated_at": "2016-12-13T11:14:10Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "GitTest",
@@ -1115,7 +1227,8 @@
     "stargazers_count": 0,
     "updated_at": "2018-08-28T14:40:07Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "kicad-footprints",
@@ -1125,7 +1238,8 @@
     "stargazers_count": 0,
     "updated_at": "2018-08-14T12:10:52Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "kicad-symbols",
@@ -1135,7 +1249,8 @@
     "stargazers_count": 0,
     "updated_at": "2018-08-14T12:07:58Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "kicad-templates",
@@ -1145,7 +1260,8 @@
     "stargazers_count": 1,
     "updated_at": "2021-07-31T11:01:34Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "MultiFunctionalShield",
@@ -1155,7 +1271,8 @@
     "stargazers_count": 1,
     "updated_at": "2024-03-06T21:30:13Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   },
   {
     "name": "BeeHave",
@@ -1165,10 +1282,14 @@
     "stargazers_count": 0,
     "updated_at": "2023-01-28T17:15:13Z",
     "fork": false,
-    "private": false
+    "private": false,
+    "has_pages": false
   }
 ];
-      const repoList = document.getElementById("repo-list");
+      const pagesList = document.getElementById("pages-repo-list");
+      const otherList = document.getElementById("other-repo-list");
+      const pagesGroup = document.getElementById("pages-group");
+      const otherGroup = document.getElementById("other-group");
       const status = document.getElementById("repo-status");
       const repoCount = document.getElementById("repo-count");
       const languageCount = document.getElementById("language-count");
@@ -1228,6 +1349,12 @@
         description.textContent = repo.description || "No description provided.";
 
         meta.className = "repo-meta";
+        if (repo.has_pages) {
+          const pagesPill = document.createElement("span");
+          pagesPill.className = "repo-pill repo-pill-pages";
+          pagesPill.textContent = "Pages";
+          meta.appendChild(pagesPill);
+        }
         if (repo.language) {
           meta.appendChild(makePill(repo.language));
         }
@@ -1247,11 +1374,17 @@
           return !repo.private;
         });
 
-        repoList.replaceChildren();
+        const withPages = publicRepos.filter(function (repo) { return !!repo.has_pages; });
+        const withoutPages = publicRepos.filter(function (repo) { return !repo.has_pages; });
+
+        pagesList.replaceChildren();
+        otherList.replaceChildren();
 
         if (!publicRepos.length) {
           repoCount.textContent = "0";
           languageCount.textContent = "0";
+          pagesGroup.hidden = true;
+          otherGroup.hidden = true;
           setStatus("No public repositories were found yet.");
           return;
         }
@@ -1261,8 +1394,17 @@
           if (repo.language) {
             languages.add(repo.language);
           }
-          repoList.appendChild(renderRepository(repo));
         });
+
+        withPages.forEach(function (repo) {
+          pagesList.appendChild(renderRepository(repo));
+        });
+        withoutPages.forEach(function (repo) {
+          otherList.appendChild(renderRepository(repo));
+        });
+
+        pagesGroup.hidden = !withPages.length;
+        otherGroup.hidden = !withoutPages.length;
 
         repoCount.textContent = String(publicRepos.length);
         languageCount.textContent = String(languages.size);
