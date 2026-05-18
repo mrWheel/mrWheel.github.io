@@ -7,16 +7,16 @@
   <meta name="description" content="A landing page for @mrWheel with quick access to public GitHub repositories.">
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #0f172a;
-      --bg-accent: rgba(59, 130, 246, 0.18);
-      --panel: rgba(15, 23, 42, 0.78);
-      --panel-border: rgba(148, 163, 184, 0.16);
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --brand: #60a5fa;
-      --brand-strong: #38bdf8;
-      --shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
+      color-scheme: light;
+      --bg: #f8fafc;
+      --bg-accent: rgba(59, 130, 246, 0.1);
+      --panel: rgba(255, 255, 255, 0.88);
+      --panel-border: rgba(148, 163, 184, 0.35);
+      --text: #0f172a;
+      --muted: #475569;
+      --brand: #2563eb;
+      --brand-strong: #0ea5e9;
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
     }
 
     * {
@@ -28,8 +28,8 @@
       min-height: 100vh;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 38%),
-        radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.18), transparent 28%),
+        radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 38%),
+        radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.1), transparent 28%),
         var(--bg);
       color: var(--text);
     }
@@ -68,7 +68,7 @@
       width: 18rem;
       height: 18rem;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 72%);
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 72%);
       pointer-events: none;
     }
 
@@ -77,8 +77,8 @@
       width: fit-content;
       padding: 0.45rem 0.85rem;
       border-radius: 999px;
-      background: rgba(96, 165, 250, 0.12);
-      border: 1px solid rgba(96, 165, 250, 0.2);
+      background: rgba(96, 165, 250, 0.18);
+      border: 1px solid rgba(96, 165, 250, 0.3);
       color: var(--brand);
       font-size: 0.85rem;
       letter-spacing: 0.04em;
@@ -128,20 +128,20 @@
 
     .button-primary {
       background: linear-gradient(135deg, var(--brand), var(--brand-strong));
-      color: #020617;
+      color: #ffffff;
     }
 
     .button-secondary {
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      background: rgba(15, 23, 42, 0.35);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.7);
     }
 
     .hero-stat {
       min-width: 10rem;
       padding: 1rem 1.1rem;
       border-radius: 20px;
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid rgba(148, 163, 184, 0.14);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.28);
     }
 
     .hero-stat strong {
@@ -194,16 +194,16 @@
       min-height: 100%;
       padding: 1.35rem;
       border-radius: 22px;
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      background: rgba(15, 23, 42, 0.62);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(255, 255, 255, 0.74);
       text-decoration: none;
       transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
 
     .repo-card:hover,
     .repo-card:focus-visible {
-      border-color: rgba(96, 165, 250, 0.45);
-      background: rgba(15, 23, 42, 0.75);
+      border-color: rgba(37, 99, 235, 0.45);
+      background: rgba(255, 255, 255, 0.94);
     }
 
     .repo-card h3 {
@@ -232,16 +232,16 @@
       gap: 0.35rem;
       padding: 0.3rem 0.65rem;
       border-radius: 999px;
-      background: rgba(59, 130, 246, 0.12);
-      border: 1px solid rgba(96, 165, 250, 0.16);
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(96, 165, 250, 0.26);
     }
 
     .status {
       color: var(--muted);
       padding: 1rem;
       border-radius: 18px;
-      border: 1px dashed rgba(148, 163, 184, 0.24);
-      background: rgba(15, 23, 42, 0.35);
+      border: 1px dashed rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.7);
     }
 
     .status[hidden] {
@@ -1197,6 +1197,20 @@
         return pill;
       }
 
+      function getRepositoryUrl(repo) {
+        if (!repo.has_pages) {
+          return repo.html_url;
+        }
+
+        const lowerUsername = username.toLowerCase();
+        const lowerName = String(repo.name || "").toLowerCase();
+        if (lowerName === lowerUsername + ".github.io") {
+          return "https://" + username + ".github.io/index.html";
+        }
+
+        return "https://" + username + ".github.io/" + encodeURIComponent(repo.name) + "/index.html";
+      }
+
       function renderRepository(repo) {
         const item = document.createElement("li");
         const link = document.createElement("a");
@@ -1205,7 +1219,7 @@
         const meta = document.createElement("div");
 
         link.className = "repo-card";
-        link.href = repo.html_url;
+        link.href = getRepositoryUrl(repo);
         link.target = "_blank";
         link.rel = "noreferrer";
         link.setAttribute("aria-label", "Open repository " + repo.name);
