@@ -1318,18 +1318,62 @@
         return pill;
       }
 
+      function isLandingPageRepo(repo) {
+        const lowerUsername = username.toLowerCase();
+        const lowerName = String(repo.name || "").toLowerCase();
+        return lowerName === lowerUsername + ".github.io";
+      }
+
       function getRepositoryUrl(repo) {
         if (!repo.has_pages) {
           return repo.html_url;
         }
 
-        const lowerUsername = username.toLowerCase();
-        const lowerName = String(repo.name || "").toLowerCase();
-        if (lowerName === lowerUsername + ".github.io") {
+        if (isLandingPageRepo(repo)) {
           return "https://" + username + ".github.io/index.html";
         }
 
+        if (repo.pages_url) {
+          return repo.pages_url;
+        }
+
         return "https://" + username + ".github.io/" + encodeURIComponent(repo.name) + "/index.html";
+      }
+
+      function verifyPagesAvailability(repos) {
+        const checks = repos.map(function (repo) {
+          if (!repo || !repo.has_pages || isLandingPageRepo(repo)) {
+            return Promise.resolve(repo);
+          }
+
+          const pagesApiUrl = "https://api.github.com/repos/"
+            + encodeURIComponent(username)
+            + "/"
+            + encodeURIComponent(repo.name)
+            + "/pages";
+
+          return fetch(pagesApiUrl)
+            .then(function (response) {
+              if (!response.ok) {
+                return Object.assign({}, repo, { has_pages: false, pages_url: null });
+              }
+              return response.json()
+                .then(function (pagesInfo) {
+                  return Object.assign({}, repo, {
+                    has_pages: true,
+                    pages_url: pagesInfo && pagesInfo.html_url ? pagesInfo.html_url : null
+                  });
+                })
+                .catch(function () {
+                  return Object.assign({}, repo, { has_pages: true, pages_url: null });
+                });
+            })
+            .catch(function () {
+              return Object.assign({}, repo, { has_pages: false, pages_url: null });
+            });
+        });
+
+        return Promise.all(checks);
       }
 
       function renderRepository(repo) {
@@ -1371,7 +1415,7 @@
 
       function renderRepositories(repos, message) {
         const publicRepos = repos.filter(function (repo) {
-          return !repo.private;
+          return !repo.private && !isLandingPageRepo(repo);
         });
 
         const withPages = publicRepos.filter(function (repo) { return !!repo.has_pages; });
@@ -1425,10 +1469,19 @@
           return response.json();
         })
         .then(function (repos) {
+          return verifyPagesAvailability(repos);
+        })
+        .then(function (repos) {
           renderRepositories(repos);
         })
         .catch(function () {
-          renderRepositories(fallbackRepos, "Showing a bundled repository snapshot.");
+          verifyPagesAvailability(fallbackRepos)
+            .then(function (repos) {
+              renderRepositories(repos, "Showing a bundled repository snapshot.");
+            })
+            .catch(function () {
+              renderRepositories(fallbackRepos, "Showing a bundled repository snapshot.");
+            });
         });
     }());
   </script>
