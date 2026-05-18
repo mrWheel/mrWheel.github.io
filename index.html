@@ -262,6 +262,12 @@
       border: 1px solid rgba(96, 165, 250, 0.26);
     }
 
+    .repo-pill-gitbook {
+      background: rgba(168, 85, 247, 0.12);
+      border-color: rgba(168, 85, 247, 0.3);
+      color: #7e22ce;
+    }
+
     .status {
       color: var(--muted);
       padding: 1rem;
@@ -336,8 +342,12 @@
         <h3 class="group-title">🌐 Repositories with GitHub Pages</h3>
         <ul class="repo-grid" id="pages-repo-list" aria-live="polite"></ul>
       </div>
+      <div class="repo-group" id="gitbook-group" hidden>
+        <h3 class="group-title">📚 Repositories with GitBook</h3>
+        <ul class="repo-grid" id="gitbook-repo-list" aria-live="polite"></ul>
+      </div>
       <div class="repo-group" id="other-group" hidden>
-        <h3 class="group-title">Repositories without GitHub Pages</h3>
+        <h3 class="group-title">Repositories without GitHub Pages or GitBook</h3>
         <ul class="repo-grid" id="other-repo-list" aria-live="polite"></ul>
       </div>
       <noscript>
@@ -349,6 +359,12 @@
   <script>
     (function () {
       const username = "mrWheel";
+      const knownGitbookUrls = Object.freeze({
+        "YAPP_Box": "https://mrwheel-docs.gitbook.io/yappgenerator_en/",
+        "DSMRlogger32": "https://mrwheel-docs.gitbook.io/dsmrlogger32/",
+        "DSMRloggerAPI": "https://mrwheel-docs.gitbook.io/dsmrloggerapi/",
+        "DSMRloggerWS": "https://mrwheel-docs.gitbook.io/dsmrloggerws/"
+      });
       const fallbackRepos = [
   {
     "name": "mrWheel.github.io",
@@ -1287,8 +1303,10 @@
   }
 ];
       const pagesList = document.getElementById("pages-repo-list");
+      const gitbookList = document.getElementById("gitbook-repo-list");
       const otherList = document.getElementById("other-repo-list");
       const pagesGroup = document.getElementById("pages-group");
+      const gitbookGroup = document.getElementById("gitbook-group");
       const otherGroup = document.getElementById("other-group");
       const status = document.getElementById("repo-status");
       const repoCount = document.getElementById("repo-count");
@@ -1324,7 +1342,51 @@
         return lowerName === lowerUsername + ".github.io";
       }
 
-      function getRepositoryUrl(repo) {
+      function toIndexHtmlUrl(url) {
+        const trimmed = String(url || "").trim();
+        if (!trimmed) {
+          return null;
+        }
+
+        const hashSplit = trimmed.split("#");
+        const baseWithQuery = hashSplit[0];
+        const hashPart = hashSplit.length > 1 ? "#" + hashSplit.slice(1).join("#") : "";
+        const querySplit = baseWithQuery.split("?");
+        const base = querySplit[0];
+        const queryPart = querySplit.length > 1 ? "?" + querySplit.slice(1).join("?") : "";
+        const withIndex = /\/index\.html$/i.test(base)
+          ? base
+          : base.replace(/\/+$/, "") + "/index.html";
+
+        return withIndex + queryPart + hashPart;
+      }
+
+      function getGitbookUrl(repo) {
+        if (!repo) {
+          return null;
+        }
+
+        if (knownGitbookUrls[repo.name]) {
+          return knownGitbookUrls[repo.name];
+        }
+
+        const candidates = [repo.homepage, repo.description];
+        for (let i = 0; i < candidates.length; i += 1) {
+          const value = String(candidates[i] || "");
+          const match = value.match(/https?:\/\/[^\s)]+gitbook\.io[^\s)]*/i);
+          if (match && match[0]) {
+            return match[0].replace(/[.,;)\]]+$/, "");
+          }
+        }
+
+        return null;
+      }
+
+      function getRepositoryUrl(repo, destination) {
+        if (destination === "gitbook" && repo.gitbook_url) {
+          return repo.gitbook_url;
+        }
+
         if (!repo.has_pages) {
           return repo.html_url;
         }
@@ -1334,7 +1396,7 @@
         }
 
         if (repo.pages_url) {
-          return repo.pages_url;
+          return toIndexHtmlUrl(repo.pages_url);
         }
 
         return "https://" + username + ".github.io/" + encodeURIComponent(repo.name) + "/index.html";
@@ -1376,7 +1438,7 @@
         return Promise.all(checks);
       }
 
-      function renderRepository(repo) {
+      function renderRepository(repo, destination) {
         const item = document.createElement("li");
         const link = document.createElement("a");
         const title = document.createElement("h3");
@@ -1384,16 +1446,24 @@
         const meta = document.createElement("div");
 
         link.className = "repo-card";
-        link.href = getRepositoryUrl(repo);
+        link.href = getRepositoryUrl(repo, destination);
         link.target = "_blank";
         link.rel = "noreferrer";
-        link.setAttribute("aria-label", "Open repository " + repo.name);
+        link.setAttribute(
+          "aria-label",
+          (destination === "gitbook" ? "Open GitBook for " : "Open repository ") + repo.name
+        );
 
         title.textContent = repo.name;
         description.textContent = repo.description || "No description provided.";
 
         meta.className = "repo-meta";
-        if (repo.has_pages) {
+        if (destination === "gitbook") {
+          const gitbookPill = document.createElement("span");
+          gitbookPill.className = "repo-pill repo-pill-gitbook";
+          gitbookPill.textContent = "GitBook";
+          meta.appendChild(gitbookPill);
+        } else if (repo.has_pages) {
           const pagesPill = document.createElement("span");
           pagesPill.className = "repo-pill repo-pill-pages";
           pagesPill.textContent = "Pages";
@@ -1418,16 +1488,24 @@
           return !repo.private && !isLandingPageRepo(repo);
         });
 
-        const withPages = publicRepos.filter(function (repo) { return !!repo.has_pages; });
-        const withoutPages = publicRepos.filter(function (repo) { return !repo.has_pages; });
+        const normalizedRepos = publicRepos.map(function (repo) {
+          return Object.assign({}, repo, { gitbook_url: getGitbookUrl(repo) });
+        });
+        const withPages = normalizedRepos.filter(function (repo) { return !!repo.has_pages; });
+        const withGitbook = normalizedRepos.filter(function (repo) { return !!repo.gitbook_url; });
+        const withoutPagesOrGitbook = normalizedRepos.filter(function (repo) {
+          return !repo.has_pages && !repo.gitbook_url;
+        });
 
         pagesList.replaceChildren();
+        gitbookList.replaceChildren();
         otherList.replaceChildren();
 
         if (!publicRepos.length) {
           repoCount.textContent = "0";
           languageCount.textContent = "0";
           pagesGroup.hidden = true;
+          gitbookGroup.hidden = true;
           otherGroup.hidden = true;
           setStatus("No public repositories were found yet.");
           return;
@@ -1441,14 +1519,18 @@
         });
 
         withPages.forEach(function (repo) {
-          pagesList.appendChild(renderRepository(repo));
+          pagesList.appendChild(renderRepository(repo, "pages"));
         });
-        withoutPages.forEach(function (repo) {
-          otherList.appendChild(renderRepository(repo));
+        withGitbook.forEach(function (repo) {
+          gitbookList.appendChild(renderRepository(repo, "gitbook"));
+        });
+        withoutPagesOrGitbook.forEach(function (repo) {
+          otherList.appendChild(renderRepository(repo, "other"));
         });
 
         pagesGroup.hidden = !withPages.length;
-        otherGroup.hidden = !withoutPages.length;
+        gitbookGroup.hidden = !withGitbook.length;
+        otherGroup.hidden = !withoutPagesOrGitbook.length;
 
         repoCount.textContent = String(publicRepos.length);
         languageCount.textContent = String(languages.size);
