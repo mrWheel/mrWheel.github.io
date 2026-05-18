@@ -395,7 +395,7 @@
   {
     "name": "ultimateTimer",
     "html_url": "https://github.com/mrWheel/ultimateTimer",
-    "description": null,
+    "description": "ESP32 cyclic and 24h timer for a 2.4 inch SPI TFT + EC11 rotary encoder module.",
     "language": "C++",
     "stargazers_count": 0,
     "updated_at": "2026-05-16T13:35:45Z",
@@ -417,7 +417,7 @@
   {
     "name": "softPowerLatch",
     "html_url": "https://github.com/mrWheel/softPowerLatch",
-    "description": null,
+    "description": "A simple and efficient soft power latch circuit that allows a device to be switched on and off using a single push button, with ultra-low standby current.",
     "language": null,
     "stargazers_count": 0,
     "updated_at": "2026-04-17T06:54:22Z",
@@ -428,7 +428,7 @@
   {
     "name": "deskAerosolSensor",
     "html_url": "https://github.com/mrWheel/deskAerosolSensor",
-    "description": null,
+    "description": "This PlatformIO project targets a CYD style ESP32 board with an ILI9341 display and a 3x3 LVGL dashboard. A Desktop device that measures and display the air quality in the room.",
     "language": "OpenSCAD",
     "stargazers_count": 0,
     "updated_at": "2026-04-17T06:39:04Z",
@@ -461,7 +461,7 @@
   {
     "name": "boxGenerator",
     "html_url": "https://github.com/mrWheel/boxGenerator",
-    "description": null,
+    "description": "A Python tool that generates fully customizable 3D-printable storage boxes with intelligent compartment layout optimization.",
     "language": "Python",
     "stargazers_count": 0,
     "updated_at": "2026-03-21T13:51:08Z",
@@ -472,7 +472,7 @@
   {
     "name": "handheldAerosolSensor",
     "html_url": "https://github.com/mrWheel/handheldAerosolSensor",
-    "description": null,
+    "description": "This project describes a battery-powered, low-power air quality monitor",
     "language": "OpenSCAD",
     "stargazers_count": 0,
     "updated_at": "2026-03-13T17:04:24Z",
@@ -483,7 +483,7 @@
   {
     "name": "3DP-Stencil-Generator",
     "html_url": "https://github.com/mrWheel/3DP-Stencil-Generator",
-    "description": null,
+    "description": "Generates a stencil frame based on the Edge.Cuts (PCB outline) or User.3 layer, Creates pad cutouts based on SMD pads, Adds alignment pin holes based on circles on User.2 layer, Outputs an OpenSCAD file for easy customization and 3D printing, Automatically opens the output folder after generation for quick access",
     "language": "Python",
     "stargazers_count": 0,
     "updated_at": "2026-03-02T10:07:12Z",
@@ -527,7 +527,7 @@
   {
     "name": "mqttAerosolSensor",
     "html_url": "https://github.com/mrWheel/mqttAerosolSensor",
-    "description": null,
+    "description": "This project manages an ESP32 firmware application for monitoring Air Quality",
     "language": "OpenSCAD",
     "stargazers_count": 0,
     "updated_at": "2026-02-23T13:00:41Z",
@@ -538,7 +538,7 @@
   {
     "name": "safeTimers",
     "html_url": "https://github.com/mrWheel/safeTimers",
-    "description": null,
+    "description": "safeTimers is a tiny, millis()-rollover-safe timer utility for Arduino-compatible platforms. It provides a set of macros and helper functions that make periodic task scheduling reliable—even when millis() wraps (about every 49.7 days on typical Arduino cores).",
     "language": "C",
     "stargazers_count": 0,
     "updated_at": "2026-02-03T10:09:52Z",
@@ -1628,6 +1628,7 @@
           return verifyPagesAvailability(repos);
         })
         .then(function (repos) {
+          setStatus("Looking up the Description…");
           return enrichMissingDescriptions(repos);
         })
         .then(function (repos) {
@@ -1636,6 +1637,7 @@
         .catch(function () {
           verifyPagesAvailability(fallbackRepos)
             .then(function (repos) {
+              setStatus("Looking up the Description…");
               return enrichMissingDescriptions(repos);
             })
             .then(function (repos) {

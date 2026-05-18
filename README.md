@@ -41,7 +41,7 @@ The script follows this order:
    - `GET https://api.github.com/users/{username}/repos?per_page=100&sort=updated`
 2. For each repo, verify GitHub Pages availability through:
    - `GET https://api.github.com/repos/{username}/{repo}/pages`
-3. For repositories with missing/placeholder descriptions, fetch details through:
+3. **Looking up the Description**: for repositories with missing/placeholder descriptions, display status `"Looking up the Description…"` and fetch details through:
    - `GET https://api.github.com/repos/{username}/{repo}`
 4. Render grouped cards.
 5. If live fetch fails, use bundled `fallbackRepos` snapshot embedded in `index.html`.
@@ -49,6 +49,23 @@ The script follows this order:
 
 When fallback data is used, the status message becomes:
 - `Showing a bundled repository snapshot.`
+
+## Looking up the Description
+
+Between the Pages-availability check and the final render, the script runs `enrichMissingDescriptions(repos)`.
+During this phase the status bar shows **"Looking up the Description…"**.
+
+For each repository whose `description` field is `null`, an empty string, or a known placeholder
+(`"null"`, `"undefined"`, `"no description available"`, `"no description provided."`), the function
+calls `GET https://api.github.com/repos/{username}/{repo}` to retrieve the full repository object
+and extract its description.
+
+- If the call succeeds and the response carries a non-empty, non-placeholder description, that value
+  replaces the missing one before the card is rendered.
+- If the call fails (network error, rate limit, non-OK status), the repository is rendered without a
+  description and the card falls back to displaying `"No description provided."`.
+- The `fallbackRepos` snapshot bundled inside `index.html` is kept up-to-date with known descriptions
+  so that the fallback path shows correct information even when the per-repo API calls cannot be made.
 
 ## Repository classification rules
 
@@ -102,7 +119,7 @@ Two override maps are intentionally hardcoded and must stay current:
 Each card includes:
 
 - repository name,
-- description (trimmed/normalized; placeholders such as `null`, `undefined`, and `"No description available"` are treated as missing, then `"No description provided."` is used as fallback),
+- description (trimmed/normalized; placeholders such as `null`, `undefined`, and `"No description available"` are treated as missing; the script then attempts a live API lookup — see **Looking up the Description**; if the lookup also yields nothing, `"No description provided."` is used as fallback),
 - metadata pills:
   - `GitBook` pill when rendering GitBook destination,
   - `Pages` pill for Pages destination,
