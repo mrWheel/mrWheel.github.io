@@ -331,7 +331,7 @@
     <section class="repos" id="repositories">
       <div class="section-header">
         <div>
-          <h2>Public repositories</h2>
+          <h2>REPOSITORIES WITH GITHUB PAGES OR GITBOOK</h2>
           <p>Fetched live from GitHub with a bundled fallback snapshot for reliability.</p>
         </div>
         <a class="button button-secondary" href="https://github.com/mrWheel?tab=repositories" target="_blank" rel="noreferrer">See all on GitHub</a>
@@ -365,6 +365,9 @@
         "DSMRloggerAPI": "https://mrwheel-docs.gitbook.io/dsmrloggerapi/",
         "DSMRloggerWS": "https://mrwheel-docs.gitbook.io/dsmrloggerws/"
       });
+      const knownPagesIndexUrls = Object.freeze({
+        "TFT_LCD_Display_EC11_Board": "https://mrwheel.github.io/TFT_LCD_Display_EC11_Board/index.html"
+      });
       const fallbackRepos = [
   {
     "name": "mrWheel.github.io",
@@ -386,7 +389,8 @@
     "updated_at": "2026-05-18T10:26:06Z",
     "fork": false,
     "private": false,
-    "has_pages": false
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/TFT_LCD_Display_EC11_Board/index.html"
   },
   {
     "name": "ultimateTimer",
@@ -1404,8 +1408,15 @@
 
       function verifyPagesAvailability(repos) {
         const checks = repos.map(function (repo) {
-          if (!repo || !repo.has_pages || isLandingPageRepo(repo)) {
+          if (!repo || isLandingPageRepo(repo)) {
             return Promise.resolve(repo);
+          }
+
+          if (knownPagesIndexUrls[repo.name]) {
+            return Promise.resolve(Object.assign({}, repo, {
+              has_pages: true,
+              pages_url: knownPagesIndexUrls[repo.name]
+            }));
           }
 
           const pagesApiUrl = "https://api.github.com/repos/"
