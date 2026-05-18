@@ -1325,6 +1325,29 @@
         status.hidden = true;
       }
 
+      function normalizeDescription(value) {
+        const normalized = String(value || "").replace(/\s+/g, " ").trim();
+        if (!normalized) {
+          return null;
+        }
+
+        const placeholder = normalized.toLowerCase();
+        if (
+          placeholder === "null"
+          || placeholder === "undefined"
+          || placeholder === "no description available"
+          || placeholder === "no description provided."
+        ) {
+          return null;
+        }
+
+        return normalized;
+      }
+
+      function normalizeRepoDescription(repo) {
+        return Object.assign({}, repo, { description: normalizeDescription(repo && repo.description) });
+      }
+
       function formatUpdatedAt(value) {
         return new Date(value).toLocaleDateString(undefined, {
           year: "numeric",
@@ -1449,6 +1472,46 @@
         return Promise.all(checks);
       }
 
+      function enrichMissingDescriptions(repos) {
+        const checks = repos.map(function (repo) {
+          if (!repo || isLandingPageRepo(repo)) {
+            return Promise.resolve(repo);
+          }
+
+          const normalizedRepo = normalizeRepoDescription(repo);
+          if (normalizedRepo.description) {
+            return Promise.resolve(normalizedRepo);
+          }
+
+          const repoApiUrl = "https://api.github.com/repos/"
+            + encodeURIComponent(username)
+            + "/"
+            + encodeURIComponent(repo.name);
+
+          return fetch(repoApiUrl)
+            .then(function (response) {
+              if (!response.ok) {
+                return normalizedRepo;
+              }
+
+              return response.json()
+                .then(function (repoDetails) {
+                  return Object.assign({}, normalizedRepo, {
+                    description: normalizeDescription(repoDetails && repoDetails.description)
+                  });
+                })
+                .catch(function () {
+                  return normalizedRepo;
+                });
+            })
+            .catch(function () {
+              return normalizedRepo;
+            });
+        });
+
+        return Promise.all(checks);
+      }
+
       function renderRepository(repo, destination) {
         const item = document.createElement("li");
         const link = document.createElement("a");
@@ -1565,15 +1628,24 @@
           return verifyPagesAvailability(repos);
         })
         .then(function (repos) {
+          return enrichMissingDescriptions(repos);
+        })
+        .then(function (repos) {
           renderRepositories(repos);
         })
         .catch(function () {
           verifyPagesAvailability(fallbackRepos)
             .then(function (repos) {
+              return enrichMissingDescriptions(repos);
+            })
+            .then(function (repos) {
               renderRepositories(repos, "Showing a bundled repository snapshot.");
             })
             .catch(function () {
-              renderRepositories(fallbackRepos, "Showing a bundled repository snapshot.");
+              renderRepositories(
+                fallbackRepos.map(normalizeRepoDescription),
+                "Showing a bundled repository snapshot."
+              );
             });
         });
     }());

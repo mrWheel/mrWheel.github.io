@@ -41,9 +41,11 @@ The script follows this order:
    - `GET https://api.github.com/users/{username}/repos?per_page=100&sort=updated`
 2. For each repo, verify GitHub Pages availability through:
    - `GET https://api.github.com/repos/{username}/{repo}/pages`
-3. Render grouped cards.
-4. If live fetch fails, use bundled `fallbackRepos` snapshot embedded in `index.html`.
-5. If verification of fallback data fails, render the raw fallback snapshot directly.
+3. For repositories with missing/placeholder descriptions, fetch details through:
+   - `GET https://api.github.com/repos/{username}/{repo}`
+4. Render grouped cards.
+5. If live fetch fails, use bundled `fallbackRepos` snapshot embedded in `index.html`.
+6. If verification of fallback data fails, render the fallback snapshot directly (with local description normalization).
 
 When fallback data is used, the status message becomes:
 - `Showing a bundled repository snapshot.`
@@ -100,7 +102,7 @@ Two override maps are intentionally hardcoded and must stay current:
 Each card includes:
 
 - repository name,
-- description (`"No description provided."` fallback),
+- description (trimmed/normalized; placeholders such as `null`, `undefined`, and `"No description available"` are treated as missing, then `"No description provided."` is used as fallback),
 - metadata pills:
   - `GitBook` pill when rendering GitBook destination,
   - `Pages` pill for Pages destination,
