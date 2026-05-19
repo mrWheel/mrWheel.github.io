@@ -85,17 +85,16 @@ Important: a repository can appear in both Pages and GitBook groups if it satisf
 
 ## Link destination rules
 
-Card link target depends on destination:
+Cards are no longer clickable as a whole. Each card has action buttons:
 
-- GitBook destination:
-  - use `repo.gitbook_url`.
-- Non-Pages repos:
-  - use `repo.html_url` (GitHub repository page).
-- Landing-page repo (if ever routed):
-  - `https://{username}.github.io/index.html`
-- Pages repos:
-  - use `repo.pages_url` when available, normalized to end in `/index.html`.
-  - else fallback to `https://{username}.github.io/{repo}/index.html`
+- `repository` button:
+  - always uses `repo.html_url` (GitHub repository page).
+- `gitbook` button (GitBook cards):
+  - uses `repo.gitbook_url`.
+- `pages` button (Pages cards):
+  - uses `repo.pages_url` when available, normalized to end in `/index.html`.
+  - else falls back to `https://{username}.github.io/{repo}/index.html`.
+- Repositories without GitBook or Pages only get a single `repository` button.
 
 ## GitBook detection rules
 
@@ -126,9 +125,12 @@ Each card includes:
   - language pill when `repo.language` exists,
   - `Fork` pill when `repo.fork === true`,
   - star count (`★ {stargazers_count}`),
-  - last updated date (`Updated {localized date}`).
+  - last updated date (`Updated {localized date}`),
+- action buttons:
+  - always `repository`,
+  - plus `gitbook` for GitBook cards or `pages` for Pages cards.
 
-All cards open in a new tab with `rel="noreferrer"`.
+All action buttons open in a new tab with `rel="noreferrer"`.
 
 ## Required DOM IDs and coupling with JavaScript
 
