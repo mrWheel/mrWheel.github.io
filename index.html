@@ -121,8 +121,7 @@
 
     .button:hover,
     .button:focus-visible,
-    .repo-card:hover,
-    .repo-card:focus-visible {
+    .repo-card:hover {
       transform: translateY(-2px);
     }
 
@@ -247,9 +246,38 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.65rem;
-      margin-top: auto;
+      margin-top: 0;
       color: var(--muted);
       font-size: 0.9rem;
+    }
+
+    .repo-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: auto;
+    }
+
+    .repo-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(255, 255, 255, 0.92);
+      color: inherit;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .repo-action:hover,
+    .repo-action:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(37, 99, 235, 0.45);
+      background: rgba(255, 255, 255, 1);
     }
 
     .repo-pill {
@@ -1514,19 +1542,13 @@
 
       function renderRepository(repo, destination) {
         const item = document.createElement("li");
-        const link = document.createElement("a");
+        const card = document.createElement("article");
         const title = document.createElement("h3");
         const description = document.createElement("p");
         const meta = document.createElement("div");
+        const actions = document.createElement("div");
 
-        link.className = "repo-card";
-        link.href = getRepositoryUrl(repo, destination);
-        link.target = "_blank";
-        link.rel = "noreferrer";
-        link.setAttribute(
-          "aria-label",
-          (destination === "gitbook" ? "Open GitBook for " : "Open repository ") + repo.name
-        );
+        card.className = "repo-card";
 
         title.textContent = repo.name;
         description.textContent = repo.description || "No description provided.";
@@ -1552,8 +1574,35 @@
         meta.appendChild(makePill("★ " + repo.stargazers_count));
         meta.appendChild(makePill("Updated " + formatUpdatedAt(repo.updated_at)));
 
-        link.append(title, description, meta);
-        item.appendChild(link);
+        actions.className = "repo-actions";
+
+        function makeActionButton(label, url, ariaLabel) {
+          const action = document.createElement("a");
+          action.className = "repo-action";
+          action.href = url;
+          action.target = "_blank";
+          action.rel = "noreferrer";
+          action.textContent = label;
+          action.setAttribute("aria-label", ariaLabel);
+          return action;
+        }
+
+        actions.appendChild(
+          makeActionButton("repository", repo.html_url, "Open repository " + repo.name)
+        );
+
+        if (destination === "gitbook" && repo.gitbook_url) {
+          actions.appendChild(
+            makeActionButton("gitbook", repo.gitbook_url, "Open GitBook for " + repo.name)
+          );
+        } else if (repo.has_pages) {
+          actions.appendChild(
+            makeActionButton("pages", getRepositoryUrl(repo, "pages"), "Open Pages for " + repo.name)
+          );
+        }
+
+        card.append(title, description, meta, actions);
+        item.appendChild(card);
         return item;
       }
 
