@@ -37,6 +37,8 @@ Use this document as the source of truth for how the page works and what must st
 
 The script follows this order:
 
+0. If a browser `localStorage` cache exists from a previous successful load, render it immediately
+   with status `"Showing cached repository snapshot."` while the live fetch proceeds in the background.
 1. Fetch all repositories dynamically from GitHub, with pagination:
    - `GET https://api.github.com/users/{username}/repos?per_page=100&sort=updated&page={n}`
 2. For each repo, verify GitHub Pages availability through:

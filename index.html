@@ -829,6 +829,11 @@
         clearStatus();
       }
 
+      const initialCache = loadRepoCache();
+      if (initialCache && initialCache.repos && initialCache.repos.length) {
+        renderRepositories(initialCache.repos, "Showing cached repository snapshot.");
+      }
+
       fetchAllRepositories()
         .then(function (repos) {
           return verifyPagesAvailability(repos);
