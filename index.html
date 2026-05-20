@@ -360,7 +360,7 @@
       <div class="section-header">
         <div>
           <h2>REPOSITORIES WITH GITHUB PAGES OR GITBOOK</h2>
-          <p>Fetched dynamically from GitHub with a local cache fallback for reliability.</p>
+          <p>Updated automatically by a GitHub Action and served from a local snapshot.</p>
         </div>
         <a class="button button-secondary" href="https://github.com/mrWheel?tab=repositories" target="_blank" rel="noreferrer">See all on GitHub</a>
       </div>
@@ -469,32 +469,7 @@
         return withIndex + queryPart + hashPart;
       }
 
-      function extractGitbookUrl(value) {
-        const source = String(value || "");
-        const match = source.match(/https?:\/\/[^\s)]+gitbook\.io[^\s)]*/i);
-        if (match && match[0]) {
-          return match[0].replace(/[.,;)\]]+$/, "");
-        }
-        return null;
-      }
-
-      function getGitbookUrl(repo) {
-        if (!repo) {
-          return null;
-        }
-
-        return extractGitbookUrl(repo.homepage) || extractGitbookUrl(repo.description);
-      }
-
-      function getRepositoryUrl(repo, destination) {
-        if (destination === "gitbook" && repo.gitbook_url) {
-          return repo.gitbook_url;
-        }
-
-        if (!repo.has_pages) {
-          return repo.html_url;
-        }
-
+      function getPagesUrl(repo) {
         if (isLandingPageRepo(repo)) {
           return "https://" + username + ".github.io/index.html";
         }
@@ -519,7 +494,7 @@
           });
       }
 
-      function renderRepository(repo, destination) {
+      function renderRepository(repo) {
         const item = document.createElement("li");
         const card = document.createElement("article");
         const title = document.createElement("h3");
@@ -533,16 +508,17 @@
         description.textContent = repo.description || "No description provided.";
 
         meta.className = "repo-meta";
-        if (destination === "gitbook") {
-          const gitbookPill = document.createElement("span");
-          gitbookPill.className = "repo-pill repo-pill-gitbook";
-          gitbookPill.textContent = "GitBook";
-          meta.appendChild(gitbookPill);
-        } else if (repo.has_pages) {
+        if (repo.has_pages) {
           const pagesPill = document.createElement("span");
           pagesPill.className = "repo-pill repo-pill-pages";
           pagesPill.textContent = "Pages";
           meta.appendChild(pagesPill);
+        }
+        if (repo.has_gitbook) {
+          const gitbookPill = document.createElement("span");
+          gitbookPill.className = "repo-pill repo-pill-gitbook";
+          gitbookPill.textContent = "GitBook";
+          meta.appendChild(gitbookPill);
         }
         if (repo.language) {
           meta.appendChild(makePill(repo.language));
@@ -570,13 +546,15 @@
           makeActionButton("repository", repo.html_url, "Open repository " + repo.name)
         );
 
-        if (destination === "gitbook" && repo.gitbook_url) {
+        if (repo.has_pages) {
+          actions.appendChild(
+            makeActionButton("pages", getPagesUrl(repo), "Open Pages for " + repo.name)
+          );
+        }
+
+        if (repo.has_gitbook && repo.gitbook_url) {
           actions.appendChild(
             makeActionButton("gitbook", repo.gitbook_url, "Open GitBook for " + repo.name)
-          );
-        } else if (repo.has_pages) {
-          actions.appendChild(
-            makeActionButton("pages", getRepositoryUrl(repo, "pages"), "Open Pages for " + repo.name)
           );
         }
 
@@ -590,15 +568,11 @@
           return !isLandingPageRepo(repo);
         });
 
-        const normalizedRepos = publicRepos.map(function (repo) {
-          return normalizeRepoDescription(
-            Object.assign({}, repo, { gitbook_url: repo.gitbook_url || getGitbookUrl(repo) })
-          );
-        });
+        const normalizedRepos = publicRepos.map(normalizeRepoDescription);
         const withPages = normalizedRepos.filter(function (repo) { return !!repo.has_pages; });
-        const withGitbook = normalizedRepos.filter(function (repo) { return !!repo.gitbook_url; });
+        const withGitbook = normalizedRepos.filter(function (repo) { return !!repo.has_gitbook; });
         const withoutPagesOrGitbook = normalizedRepos.filter(function (repo) {
-          return !repo.has_pages && !repo.gitbook_url;
+          return !repo.has_pages && !repo.has_gitbook;
         });
 
         pagesList.replaceChildren();
@@ -623,13 +597,13 @@
         });
 
         withPages.forEach(function (repo) {
-          pagesList.appendChild(renderRepository(repo, "pages"));
+          pagesList.appendChild(renderRepository(repo));
         });
         withGitbook.forEach(function (repo) {
-          gitbookList.appendChild(renderRepository(repo, "gitbook"));
+          gitbookList.appendChild(renderRepository(repo));
         });
         withoutPagesOrGitbook.forEach(function (repo) {
-          otherList.appendChild(renderRepository(repo, "other"));
+          otherList.appendChild(renderRepository(repo));
         });
 
         pagesGroup.hidden = !withPages.length;
@@ -648,11 +622,6 @@
       }
 
       fetchRepositoriesFromStaticJson()
-        .then(function (repos) {
-          return repos.map(function (repo) {
-            return Object.assign({}, repo, { gitbook_url: getGitbookUrl(repo) });
-          });
-        })
         .then(function (repos) {
           renderRepositories(repos);
         })

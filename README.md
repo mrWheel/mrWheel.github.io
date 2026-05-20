@@ -1,156 +1,103 @@
-# mrWheel.github.io landing page documentation
+# mrWheel.github.io — landing page
 
-This repository is a single-page dynamic site served from `index.html`.
-Use this document as the source of truth for how the page works and what must stay aligned when editing.
+A single-page GitHub Pages site that lists all public repositories owned by [@mrWheel](https://github.com/mrWheel).
 
-## Runtime model
+## Architecture
 
-- No build step, bundler, or framework.
-- `index.html` contains:
-  - all HTML markup,
-  - all CSS styles (`<style>` in `<head>`),
-  - all JavaScript logic (single IIFE in `<script>` at the end of `<body>`).
-- The page runs fully in the browser.
+```
+GitHub Action (update-repos.yml)
+        │
+        ▼ writes
+   repos.json   ◄── committed to the repository
+        │
+        ▼ fetched on page load
+   index.html   ── renders repository cards in the browser
+```
+
+- **No build step, bundler, or framework.** The page is plain HTML + CSS + JavaScript.
+- **No GitHub API calls from the browser.** All API calls are made inside the GitHub Action.
+- `repos.json` is the single data source for the landing page.
+
+## How repos.json is generated
+
+The workflow `.github/workflows/update-repos.yml` runs automatically and:
+
+1. Fetches all public repositories for `mrWheel` via the GitHub API (paginated).
+2. For each repository, resolves GitHub Pages availability (`/repos/{owner}/{repo}/pages`).
+3. For each repository, detects GitBook documentation by scanning:
+   - `repo.homepage` for a `gitbook.io` or `app.gitbook.com` URL,
+   - `repo.description` for the same patterns,
+   - the repository README (fetched via `/repos/{owner}/{repo}/readme`) for the same patterns.
+4. Writes the result to `repos.json` with the fields: `name`, `description`, `html_url`, `homepage`,
+   `language`, `updated_at`, `stargazers_count`, `has_pages`, `pages_url`, `has_gitbook`, `gitbook_url`.
+5. Commits and pushes `repos.json` if it changed.
+
+Repositories without a README, homepage, or description are handled gracefully: missing fields result
+in `has_gitbook: false` and `gitbook_url: ""`.
+
+## How often is repos.json updated?
+
+The workflow runs **daily at 03:00 UTC** (schedule: `0 3 * * *`).  
+You can also trigger it manually at any time — see the next section.
+
+## How to run the workflow manually
+
+1. Open the repository on GitHub.
+2. Go to **Actions** → **Update repositories data**.
+3. Click **Run workflow** → **Run workflow**.
+
+The workflow will regenerate `repos.json` and commit the result if anything changed.
 
 ## Page structure
 
 `<main class="page">` contains two sections:
 
-1. Hero section (`<section class="hero">`)
-   - Intro text.
-   - CTA buttons:
-     - GitHub profile link.
-     - Anchor link to repositories section (`#repositories`).
-   - Two live statistics:
-     - `#repo-count` = number of rendered public repositories (excluding the landing-page repo).
-     - `#language-count` = number of distinct non-empty `language` values.
+1. **Hero section** (`<section class="hero">`)
+   - Intro text and CTA buttons.
+   - Two live statistics: public repository count and distinct language count.
 
-2. Repositories section (`<section class="repos" id="repositories">`)
-   - Status element: `#repo-status`.
-   - Three groups, each with its own list:
-     - `#pages-group` with `#pages-repo-list`
-     - `#gitbook-group` with `#gitbook-repo-list`
-     - `#other-group` with `#other-repo-list`
-   - `<noscript>` fallback message for users without JavaScript.
+2. **Repositories section** (`<section class="repos" id="repositories">`)
+   - Three groups, each hidden when empty:
+     - `#pages-group` — repositories with GitHub Pages
+     - `#gitbook-group` — repositories with GitBook documentation
+     - `#other-group` — all other public repositories
 
-## Data sources and loading flow
+## Repository classification
 
-The script follows this order:
+Each repository in `repos.json` falls into one or more groups:
 
-0. If a browser `localStorage` cache exists from a previous successful load, render it immediately
-   with status `"Showing cached repository snapshot."` while the live fetch proceeds in the background.
-1. Fetch all repositories dynamically from GitHub, with pagination:
-   - `GET https://api.github.com/users/{username}/repos?per_page=100&sort=updated&page={n}`
-2. For each repo, verify GitHub Pages availability through:
-   - `GET https://api.github.com/repos/{username}/{repo}/pages`
-   - if this check fails (for example rate limits or unavailable metadata), preserve the `has_pages` value from the repository list response.
-3. **Looking up the Description**: for repositories with missing/placeholder descriptions, display status `"Looking up the Description…"` and fetch details through:
-   - `GET https://api.github.com/repos/{username}/{repo}`
-4. **Searching for GitBook links**: display status `"Searching for GitBook links…"` and detect GitBook URLs from:
-   - repository `homepage` / `description`
-   - repository README via `GET https://api.github.com/repos/{username}/{repo}/readme` and scanning downloaded README text
-5. Render grouped cards.
-6. Save the latest successful result in browser `localStorage` cache.
-7. If live fetch fails, use the cached snapshot when available.
+| Condition | Group |
+|-----------|-------|
+| `has_pages === true` | GitHub Pages group |
+| `has_gitbook === true` | GitBook group |
+| neither | Other group |
 
-When cache data is used, the status message becomes:
-- `Showing cached repository snapshot.`
+A repository with both Pages and GitBook appears in **both** groups.
 
-If no live data and no cache are available:
-- `Unable to load repositories from GitHub right now.`
+## Card layout
 
-## Looking up the Description
+Each repository card shows:
 
-Between the Pages-availability check and the final render, the script runs `enrichMissingDescriptions(repos)`.
-During this phase the status bar shows **"Looking up the Description…"**.
-
-For each repository whose `description` field is `null`, an empty string, or a known placeholder
-(`"null"`, `"undefined"`, `"no description available"`, `"no description provided."`), the function
-calls `GET https://api.github.com/repos/{username}/{repo}` to retrieve the full repository object
-and extract its description.
-
-- If the call succeeds and the response carries a non-empty, non-placeholder description, that value
-  replaces the missing one before the card is rendered.
-- If the call fails (network error, rate limit, non-OK status), the repository is rendered without a
-  description and the card falls back to displaying `"No description provided."`.
-
-## Repository classification rules
-
-Before rendering:
-
-- Exclude private repositories.
-- Exclude the landing page repository itself:
-  - repo name exactly equals `{username}.github.io` (case-insensitive).
-
-Each remaining repository is normalized with a computed `gitbook_url` and then can appear in:
-
-- **GitHub Pages group**: `repo.has_pages === true`
-- **GitBook group**: `repo.gitbook_url` is non-empty
-- **Other group**: neither Pages nor GitBook
-
-Important: a repository can appear in both Pages and GitBook groups if it satisfies both conditions.
-
-## Link destination rules
-
-Cards are no longer clickable as a whole. Each card has action buttons:
-
-- `repository` button:
-  - always uses `repo.html_url` (GitHub repository page).
-- `gitbook` button (GitBook cards):
-  - uses `repo.gitbook_url`.
-- `pages` button (Pages cards):
-  - uses `repo.pages_url` when available, normalized to end in `/index.html`.
-  - else falls back to `https://{username}.github.io/{repo}/index.html`.
-- Repositories without GitBook or Pages only get a single `repository` button.
-
-## GitBook detection rules
-
-`gitbook_url` resolves in this order:
-
-1. Regex scan in `repo.homepage` and `repo.description` for `gitbook.io` URL.
-2. If no match, fetch and scan repository README content for `gitbook.io` URL.
-3. `null` if no match.
-
-Trailing punctuation is trimmed from detected URLs.
-
-## Rendered card content
-
-Each card includes:
-
-- repository name,
-- description (trimmed/normalized; placeholders such as `null`, `undefined`, and `"No description available"` are treated as missing; the script then attempts a live API lookup — see **Looking up the Description**; if the lookup also yields nothing, `"No description provided."` is used as fallback),
-- metadata pills:
-  - `GitBook` pill when rendering GitBook destination,
-  - `Pages` pill for Pages destination,
-  - language pill when `repo.language` exists,
-  - `Fork` pill when `repo.fork === true`,
-  - star count (`★ {stargazers_count}`),
-  - last updated date (`Updated {localized date}`),
-- action buttons:
-  - always `repository`,
-  - plus `gitbook` for GitBook cards or `pages` for Pages cards.
-
-All action buttons open in a new tab with `rel="noreferrer"`.
-
-## Required DOM IDs and coupling with JavaScript
-
-The script depends on these IDs and they must not be renamed without updating JavaScript:
-
-- `pages-repo-list`, `gitbook-repo-list`, `other-repo-list`
-- `pages-group`, `gitbook-group`, `other-group`
-- `repo-status`
-- `repo-count`, `language-count`
-
-## Maintenance checklist for functional parity
-
-When updating this landing page, verify:
-
-1. HTML IDs used by JavaScript still exist.
-2. Repository grouping rules are unchanged (or README is updated in the same change).
-3. Link selection logic still routes to the correct Pages/GitBook/GitHub URL.
-4. Live GitHub API loading still works for multi-page repository lists.
-5. Cache fallback behavior still works when GitHub API calls fail.
+- Repository name and description.
+- Metadata pills: `Pages`, `GitBook`, language, `Fork`, star count, last-updated date (each shown only when applicable).
+- Action buttons (always open in a new tab):
+  - **repository** — links to the GitHub repository page.
+  - **pages** — links to the GitHub Pages URL (when `has_pages` is true).
+  - **gitbook** — links to the GitBook URL (when `has_gitbook` is true).
 
 ## Local preview
 
-Because this is a static file, open `index.html` directly in a browser or serve the repository root with any static file server.
+Open `index.html` directly in a browser, or serve the repository root with any static file server:
+
+```bash
+python3 -m http.server 8080
+```
+
+## Required DOM IDs (JavaScript coupling)
+
+The following IDs must not be renamed without also updating the JavaScript:
+
+`pages-repo-list`, `gitbook-repo-list`, `other-repo-list`,  
+`pages-group`, `gitbook-group`, `other-group`,  
+`repo-status`, `repo-count`, `language-count`
+
