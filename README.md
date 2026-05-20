@@ -57,22 +57,15 @@ The workflow will regenerate `repos.json` and commit the result if anything chan
    - Two live statistics: public repository count and distinct language count.
 
 2. **Repositories section** (`<section class="repos" id="repositories">`)
-   - Three groups, each hidden when empty:
-     - `#pages-group` — repositories with GitHub Pages
-     - `#gitbook-group` — repositories with GitBook documentation
-     - `#other-group` — all other public repositories
+   - A single flat tile grid (`#repo-list`) showing all public repositories.
+   - A sort control with two buttons: **Last Updated** (default, newest first) and **Alphabetical** (A–Z by name).
 
-## Repository classification
+## Repository tile grid
 
-Each repository in `repos.json` falls into one or more groups:
+All public repositories are displayed together in one grid — there is no grouping by GitHub Pages or GitBook status.
 
-| Condition | Group |
-|-----------|-------|
-| `has_pages === true` | GitHub Pages group |
-| `has_gitbook === true` | GitBook group |
-| neither | Other group |
-
-A repository with both Pages and GitBook appears in **both** groups.
+Default sort order is **Last Updated** (newest first, using `updated_at` from `repos.json`).  
+Click **Alphabetical** to sort A–Z by repository name. The active sort button is highlighted.
 
 ## Card layout
 
@@ -81,9 +74,9 @@ Each repository card shows:
 - Repository name and description.
 - Metadata pills: `Pages`, `GitBook`, language, `Fork`, star count, last-updated date (each shown only when applicable).
 - Action buttons (always open in a new tab):
-  - **repository** — links to the GitHub repository page.
-  - **pages** — links to the GitHub Pages URL (when `has_pages` is true).
-  - **gitbook** — links to the GitBook URL (when `has_gitbook` is true).
+  - **repository** — links to the GitHub repository page (always present).
+  - **pages** — links to the GitHub Pages URL (shown only when `has_pages` is true).
+  - **gitbook** — links to the GitBook URL (shown only when `has_gitbook` is true).
 
 ## Local preview
 
@@ -97,7 +90,7 @@ python3 -m http.server 8080
 
 The following IDs must not be renamed without also updating the JavaScript:
 
-`pages-repo-list`, `gitbook-repo-list`, `other-repo-list`,  
-`pages-group`, `gitbook-group`, `other-group`,  
-`repo-status`, `repo-count`, `language-count`
+`repo-list`,  
+`repo-status`, `repo-count`, `language-count`,  
+`sort-updated`, `sort-alpha`
 
