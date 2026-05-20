@@ -37,19 +37,25 @@ Use this document as the source of truth for how the page works and what must st
 
 The script follows this order:
 
-1. Fetch live repositories:
-   - `GET https://api.github.com/users/{username}/repos?per_page=100&sort=updated`
+1. Fetch all repositories dynamically from GitHub, with pagination:
+   - `GET https://api.github.com/users/{username}/repos?per_page=100&sort=updated&page={n}`
 2. For each repo, verify GitHub Pages availability through:
    - `GET https://api.github.com/repos/{username}/{repo}/pages`
-   - if this check fails (for example rate limits or unavailable metadata), preserve the `has_pages` value from the repository list response so Pages repos are still detected (including repos published from `/docs`)
+   - if this check fails (for example rate limits or unavailable metadata), preserve the `has_pages` value from the repository list response.
 3. **Looking up the Description**: for repositories with missing/placeholder descriptions, display status `"Looking up the Description…"` and fetch details through:
    - `GET https://api.github.com/repos/{username}/{repo}`
-4. Render grouped cards.
-5. If live fetch fails, use bundled `fallbackRepos` snapshot embedded in `index.html`.
-6. If verification of fallback data fails, render the fallback snapshot directly (with local description normalization).
+4. **Searching for GitBook links**: display status `"Searching for GitBook links…"` and detect GitBook URLs from:
+   - repository `homepage` / `description`
+   - repository README via `GET https://api.github.com/repos/{username}/{repo}/readme` and scanning downloaded README text
+5. Render grouped cards.
+6. Save the latest successful result in browser `localStorage` cache.
+7. If live fetch fails, use the cached snapshot when available.
 
-When fallback data is used, the status message becomes:
-- `Showing a bundled repository snapshot.`
+When cache data is used, the status message becomes:
+- `Showing cached repository snapshot.`
+
+If no live data and no cache are available:
+- `Unable to load repositories from GitHub right now.`
 
 ## Looking up the Description
 
@@ -65,8 +71,6 @@ and extract its description.
   replaces the missing one before the card is rendered.
 - If the call fails (network error, rate limit, non-OK status), the repository is rendered without a
   description and the card falls back to displaying `"No description provided."`.
-- The `fallbackRepos` snapshot bundled inside `index.html` is kept up-to-date with known descriptions
-  so that the fallback path shows correct information even when the per-repo API calls cannot be made.
 
 ## Repository classification rules
 
@@ -79,7 +83,6 @@ Before rendering:
 Each remaining repository is normalized with a computed `gitbook_url` and then can appear in:
 
 - **GitHub Pages group**: `repo.has_pages === true`
-  - `has_pages` comes from `/users/{username}/repos`; `/pages` metadata is used to enrich `pages_url` when available but does not force-disable already detected Pages repos when unavailable
 - **GitBook group**: `repo.gitbook_url` is non-empty
 - **Other group**: neither Pages nor GitBook
 
@@ -95,28 +98,18 @@ Cards are no longer clickable as a whole. Each card has action buttons:
   - uses `repo.gitbook_url`.
 - `pages` button (Pages cards):
   - uses `repo.pages_url` when available, normalized to end in `/index.html`.
-  - else falls back to `knownPagesIndexUrls[repo.name]` when a manual Pages index override exists.
   - else falls back to `https://{username}.github.io/{repo}/index.html`.
-  - this fallback also covers repositories whose Pages source is `/docs` (public URL stays `/{repo}/`)
 - Repositories without GitBook or Pages only get a single `repository` button.
 
 ## GitBook detection rules
 
-`getGitbookUrl(repo)` resolves in this order:
+`gitbook_url` resolves in this order:
 
-1. `knownGitbookUrls[repo.name]` hardcoded overrides.
-2. Regex scan in `repo.homepage` and `repo.description` for `gitbook.io` URL.
+1. Regex scan in `repo.homepage` and `repo.description` for `gitbook.io` URL.
+2. If no match, fetch and scan repository README content for `gitbook.io` URL.
 3. `null` if no match.
 
 Trailing punctuation is trimmed from detected URLs.
-
-## Known overrides in code
-
-Two override maps are intentionally hardcoded and must stay current:
-
-- `knownGitbookUrls`: manual GitBook URLs for selected repositories.
-- `knownPagesIndexUrls`: manual Pages URL fixes for repositories that need explicit `index.html`.
-  - include repositories where Pages is configured via `/docs` but API/fallback metadata can be inconsistent (for example `boxGenerator`).
 
 ## Rendered card content
 
@@ -153,8 +146,8 @@ When updating this landing page, verify:
 1. HTML IDs used by JavaScript still exist.
 2. Repository grouping rules are unchanged (or README is updated in the same change).
 3. Link selection logic still routes to the correct Pages/GitBook/GitHub URL.
-4. Fallback behavior still works when GitHub API calls fail.
-5. `knownGitbookUrls`, `knownPagesIndexUrls`, and `fallbackRepos` reflect intended data.
+4. Live GitHub API loading still works for multi-page repository lists.
+5. Cache fallback behavior still works when GitHub API calls fail.
 
 ## Local preview
 
