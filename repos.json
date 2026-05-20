@@ -8,7 +8,9 @@
     "updated_at": "2026-05-20T10:14:08Z",
     "stargazers_count": 0,
     "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/TFT_LCD_Display_EC11_Board/"
+    "pages_url": "https://mrwheel.github.io/TFT_LCD_Display_EC11_Board/",
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DSMRloggerAPI",
@@ -19,7 +21,9 @@
     "updated_at": "2026-05-20T10:11:54Z",
     "stargazers_count": 19,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": true,
+    "gitbook_url": "https://mrwheel-docs.gitbook.io/dsmrloggerapi/"
   },
   {
     "name": "boxGenerator",
@@ -30,7 +34,9 @@
     "updated_at": "2026-05-20T10:09:57Z",
     "stargazers_count": 0,
     "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/boxGenerator/"
+    "pages_url": "https://mrwheel.github.io/boxGenerator/",
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ultimateTimer",
@@ -41,7 +47,9 @@
     "updated_at": "2026-05-20T10:09:18Z",
     "stargazers_count": 0,
     "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/ultimateTimer/"
+    "pages_url": "https://mrwheel.github.io/ultimateTimer/",
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "acrylDisplay",
@@ -52,7 +60,9 @@
     "updated_at": "2026-05-20T08:54:12Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "virtualP1Cable",
@@ -63,7 +73,9 @@
     "updated_at": "2026-05-18T13:47:51Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "safeTimers",
@@ -74,7 +86,9 @@
     "updated_at": "2026-05-18T13:30:43Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "3DP-Stencil-Generator",
@@ -85,7 +99,9 @@
     "updated_at": "2026-05-18T12:38:30Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "mqttAerosolSensor",
@@ -96,7 +112,9 @@
     "updated_at": "2026-05-18T11:54:28Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "handheldAerosolSensor",
@@ -107,7 +125,9 @@
     "updated_at": "2026-05-18T11:51:51Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "deskAerosolSensor",
@@ -118,7 +138,9 @@
     "updated_at": "2026-05-18T11:49:20Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "softPowerLatch",
@@ -129,7 +151,9 @@
     "updated_at": "2026-05-18T11:47:11Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "YAPP_Box",
@@ -140,7 +164,9 @@
     "updated_at": "2026-05-17T15:17:40Z",
     "stargazers_count": 486,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": true,
+    "gitbook_url": "https://mrwheel-docs.gitbook.io/yappgenerator_en/"
   },
   {
     "name": "kicad-make-standalone",
@@ -151,7 +177,9 @@
     "updated_at": "2026-05-16T11:16:32Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "arduinoIDE2platformIO-convertor",
@@ -162,7 +190,9 @@
     "updated_at": "2026-04-29T19:55:46Z",
     "stargazers_count": 35,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "templateRepo",
@@ -173,7 +203,9 @@
     "updated_at": "2026-04-10T11:30:12Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "kicad_localizer",
@@ -184,7 +216,9 @@
     "updated_at": "2026-04-03T13:30:41Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "IFTTT-Dash-Button",
@@ -195,7 +229,9 @@
     "updated_at": "2026-03-30T01:06:07Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ESP2RFlink",
@@ -206,7 +242,9 @@
     "updated_at": "2026-03-30T00:59:25Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ESPotifyEcho",
@@ -217,7 +255,9 @@
     "updated_at": "2026-03-30T00:58:24Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "espressifBlink",
@@ -228,7 +268,9 @@
     "updated_at": "2026-02-28T12:27:36Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DSMRlogger32",
@@ -239,7 +281,9 @@
     "updated_at": "2026-02-25T15:05:23Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "espTicker32",
@@ -250,7 +294,9 @@
     "updated_at": "2026-02-24T09:50:28Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "platformIO2arduinoIDE-convertor",
@@ -261,7 +307,9 @@
     "updated_at": "2026-01-30T20:56:02Z",
     "stargazers_count": 7,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "sqliteServer",
@@ -272,7 +320,9 @@
     "updated_at": "2026-01-21T14:26:30Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "dsmr2Lib",
@@ -283,7 +333,9 @@
     "updated_at": "2026-01-20T19:44:20Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "arduino-dsmr-be",
@@ -294,7 +346,9 @@
     "updated_at": "2026-01-20T19:43:25Z",
     "stargazers_count": 3,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "aixun_t3x_updater",
@@ -305,7 +359,9 @@
     "updated_at": "2026-01-15T23:34:12Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "PixelFlow",
@@ -316,7 +372,9 @@
     "updated_at": "2026-01-13T10:49:14Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "KIM-UNO",
@@ -327,7 +385,9 @@
     "updated_at": "2025-12-29T11:21:23Z",
     "stargazers_count": 2,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "espMorseMachine",
@@ -338,7 +398,9 @@
     "updated_at": "2025-11-10T10:22:44Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "microPythonModules",
@@ -349,7 +411,9 @@
     "updated_at": "2025-08-18T15:25:31Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DSMRlogger2HTTP",
@@ -360,7 +424,9 @@
     "updated_at": "2025-07-10T18:24:55Z",
     "stargazers_count": 25,
     "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/DSMRlogger2HTTP/"
+    "pages_url": "https://mrwheel.github.io/DSMRlogger2HTTP/",
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "IR_IoT_Remote",
@@ -371,7 +437,9 @@
     "updated_at": "2025-06-01T07:47:37Z",
     "stargazers_count": 2,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "SPAmanager",
@@ -382,7 +450,9 @@
     "updated_at": "2025-05-14T14:27:56Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "esp-networking",
@@ -393,7 +463,9 @@
     "updated_at": "2025-05-03T13:50:01Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "espTicker32_NeoPixels",
@@ -404,7 +476,9 @@
     "updated_at": "2025-04-29T13:25:48Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "esp-fsmanager",
@@ -415,7 +489,9 @@
     "updated_at": "2025-04-17T13:39:19Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "openTherm_TestSuite",
@@ -426,7 +502,9 @@
     "updated_at": "2025-01-25T11:48:08Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "KIM_TapeDevice",
@@ -437,7 +515,9 @@
     "updated_at": "2024-12-25T00:20:19Z",
     "stargazers_count": 13,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ESP_ticker",
@@ -448,7 +528,9 @@
     "updated_at": "2024-11-10T12:47:27Z",
     "stargazers_count": 3,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "TimeSyncLib",
@@ -459,7 +541,9 @@
     "updated_at": "2024-09-02T11:57:21Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "IDE-convertors",
@@ -470,7 +554,9 @@
     "updated_at": "2024-07-26T14:45:25Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "I2C_RelaysMux",
@@ -481,7 +567,9 @@
     "updated_at": "2024-07-25T06:30:52Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "weerliveClass",
@@ -492,7 +580,9 @@
     "updated_at": "2024-07-19T13:50:09Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "MultiFunctionalShield",
@@ -503,7 +593,9 @@
     "updated_at": "2024-03-06T21:30:13Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "WT32-ETH01-Templates",
@@ -514,7 +606,9 @@
     "updated_at": "2024-03-02T13:43:07Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "wandLamp",
@@ -525,7 +619,9 @@
     "updated_at": "2023-09-24T12:41:02Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DSMRloggerWS",
@@ -536,7 +632,9 @@
     "updated_at": "2023-08-26T19:24:53Z",
     "stargazers_count": 31,
     "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/DSMRloggerWS/"
+    "pages_url": "https://mrwheel.github.io/DSMRloggerWS/",
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "SmInrushBooster",
@@ -547,7 +645,9 @@
     "updated_at": "2023-08-25T12:27:25Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "SPIFFS_SysLogger",
@@ -558,7 +658,9 @@
     "updated_at": "2023-02-02T13:49:35Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "BeeHave",
@@ -569,7 +671,9 @@
     "updated_at": "2023-01-28T17:15:13Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "LittleFS_SysLogger",
@@ -580,7 +684,9 @@
     "updated_at": "2022-12-18T18:00:59Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "pulseGenerators",
@@ -591,7 +697,9 @@
     "updated_at": "2022-12-01T14:46:29Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ATtiny85WatchDog",
@@ -602,7 +710,9 @@
     "updated_at": "2022-11-23T18:00:41Z",
     "stargazers_count": 2,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DSMRloggerAPI-DOCS",
@@ -613,7 +723,9 @@
     "updated_at": "2022-07-11T14:28:43Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "cmdParser",
@@ -624,7 +736,9 @@
     "updated_at": "2022-04-24T10:13:40Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DSMRrecorder",
@@ -635,7 +749,9 @@
     "updated_at": "2022-04-14T15:21:00Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "Pinger",
@@ -646,7 +762,9 @@
     "updated_at": "2022-04-11T11:16:53Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ESP32FSmanager",
@@ -657,7 +775,9 @@
     "updated_at": "2022-03-26T12:38:55Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "FloorTempMonitor",
@@ -668,7 +788,9 @@
     "updated_at": "2022-03-22T12:23:13Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "kicad-packages3D",
@@ -679,7 +801,9 @@
     "updated_at": "2022-03-01T08:25:12Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DSMRinjector",
@@ -690,7 +814,9 @@
     "updated_at": "2022-02-13T16:13:03Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "OpenTherm01",
@@ -701,7 +827,9 @@
     "updated_at": "2021-11-01T00:00:25Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ESP8266_Framework",
@@ -712,7 +840,9 @@
     "updated_at": "2021-10-18T17:44:23Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "I2C_RotaryEncoder_Library",
@@ -723,7 +853,9 @@
     "updated_at": "2021-09-05T14:50:02Z",
     "stargazers_count": 2,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "currRngrReader",
@@ -734,7 +866,9 @@
     "updated_at": "2021-08-10T08:32:29Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "kicad-templates",
@@ -745,7 +879,9 @@
     "updated_at": "2021-07-31T11:01:34Z",
     "stargazers_count": 1,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ATtester",
@@ -756,7 +892,9 @@
     "updated_at": "2021-05-31T09:08:58Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DONOFF",
@@ -767,7 +905,9 @@
     "updated_at": "2020-11-25T06:02:27Z",
     "stargazers_count": 5,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "readDSMR-logger",
@@ -778,7 +918,9 @@
     "updated_at": "2020-09-20T10:20:02Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "I2C_ADW0720",
@@ -789,7 +931,9 @@
     "updated_at": "2020-08-24T10:56:13Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "aircoControl_WS",
@@ -800,7 +944,9 @@
     "updated_at": "2020-06-09T09:03:45Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "simple_webserver",
@@ -811,7 +957,9 @@
     "updated_at": "2020-05-31T09:01:34Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ESP_SysLogger",
@@ -822,7 +970,9 @@
     "updated_at": "2020-03-19T13:32:57Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "DSMRloggerWS-DOCS",
@@ -833,7 +983,9 @@
     "updated_at": "2020-03-18T12:59:15Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "Easytotrack",
@@ -844,7 +996,9 @@
     "updated_at": "2020-02-29T14:48:50Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "testTimerRollover",
@@ -855,7 +1009,9 @@
     "updated_at": "2020-02-25T09:24:02Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ModUpdateServer",
@@ -866,7 +1022,9 @@
     "updated_at": "2020-01-10T12:10:32Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "I2C_RE_Tiny841_Slave",
@@ -877,7 +1035,9 @@
     "updated_at": "2019-11-29T11:06:58Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "I2C_FTM_Multiplexer",
@@ -888,7 +1048,9 @@
     "updated_at": "2019-11-08T11:25:46Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "FastCRC",
@@ -899,7 +1061,9 @@
     "updated_at": "2019-08-29T01:50:31Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "arduino-dsmr30",
@@ -910,7 +1074,9 @@
     "updated_at": "2019-07-25T15:07:04Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "GitTest",
@@ -921,7 +1087,9 @@
     "updated_at": "2018-08-28T14:40:07Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "kicad-footprints",
@@ -932,7 +1100,9 @@
     "updated_at": "2018-08-14T12:10:52Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "kicad-symbols",
@@ -943,7 +1113,9 @@
     "updated_at": "2018-08-14T12:07:58Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "esp8266-doorbell",
@@ -954,7 +1126,9 @@
     "updated_at": "2017-12-10T11:11:07Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "esp8266-wavspiffs",
@@ -965,7 +1139,9 @@
     "updated_at": "2017-12-10T11:09:52Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "esp8266-wavplay",
@@ -976,7 +1152,9 @@
     "updated_at": "2017-12-10T11:09:19Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "Cli",
@@ -987,7 +1165,9 @@
     "updated_at": "2017-11-14T13:00:23Z",
     "stargazers_count": 0,
     "has_pages": false,
-    "pages_url": null
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
   },
   {
     "name": "ISBN-978-94-6345-027-0",
@@ -998,6 +1178,8 @@
     "updated_at": "2016-12-13T11:14:10Z",
     "stargazers_count": 0,
     "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/ISBN-978-94-6345-027-0/"
+    "pages_url": "https://mrwheel.github.io/ISBN-978-94-6345-027-0/",
+    "has_gitbook": false,
+    "gitbook_url": ""
   }
 ]
