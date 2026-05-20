@@ -186,19 +186,36 @@
       margin: 0;
     }
 
-    .repo-group + .repo-group {
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--panel-border);
+    .sort-controls {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
     }
 
-    .group-title {
-      margin: 0 0 1rem;
-      font-size: 1rem;
-      font-weight: 600;
+    .sort-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(255, 255, 255, 0.92);
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .sort-btn:hover {
+      border-color: rgba(37, 99, 235, 0.45);
+      background: rgba(255, 255, 255, 1);
+      color: var(--text);
+    }
+
+    .sort-btn[aria-pressed="true"] {
+      background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+      border-color: transparent;
+      color: #ffffff;
     }
 
     .repo-pill-pages {
@@ -359,25 +376,20 @@
     <section class="repos" id="repositories">
       <div class="section-header">
         <div>
-          <h2>REPOSITORIES WITH GITHUB PAGES OR GITBOOK</h2>
+          <h2>Repositories</h2>
           <p>Updated automatically by a GitHub Action and served from a local snapshot.</p>
         </div>
-        <a class="button button-secondary" href="https://github.com/mrWheel?tab=repositories" target="_blank" rel="noreferrer">See all on GitHub</a>
+        <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;">
+          <div class="sort-controls" aria-label="Sort repositories">
+            <button class="sort-btn" id="sort-updated" aria-pressed="true">Last Updated</button>
+            <button class="sort-btn" id="sort-alpha" aria-pressed="false">Alphabetical</button>
+          </div>
+          <a class="button button-secondary" href="https://github.com/mrWheel?tab=repositories" target="_blank" rel="noreferrer">See all on GitHub</a>
+        </div>
       </div>
 
       <p class="status" id="repo-status">Loading repositories…</p>
-      <div class="repo-group" id="pages-group" hidden>
-        <h3 class="group-title">🌐 Repositories with GitHub Pages</h3>
-        <ul class="repo-grid" id="pages-repo-list" aria-live="polite"></ul>
-      </div>
-      <div class="repo-group" id="gitbook-group" hidden>
-        <h3 class="group-title">📚 Repositories with GitBook</h3>
-        <ul class="repo-grid" id="gitbook-repo-list" aria-live="polite"></ul>
-      </div>
-      <div class="repo-group" id="other-group" hidden>
-        <h3 class="group-title">Repositories without GitHub Pages or GitBook</h3>
-        <ul class="repo-grid" id="other-repo-list" aria-live="polite"></ul>
-      </div>
+      <ul class="repo-grid" id="repo-list" aria-live="polite"></ul>
       <noscript>
         <p class="status">JavaScript is required to load repository cards automatically. You can still view all repositories on <a href="https://github.com/mrWheel?tab=repositories" target="_blank" rel="noreferrer">GitHub</a>.</p>
       </noscript>
@@ -387,15 +399,15 @@
   <script>
     (function () {
       const username = "mrWheel";
-      const pagesList = document.getElementById("pages-repo-list");
-      const gitbookList = document.getElementById("gitbook-repo-list");
-      const otherList = document.getElementById("other-repo-list");
-      const pagesGroup = document.getElementById("pages-group");
-      const gitbookGroup = document.getElementById("gitbook-group");
-      const otherGroup = document.getElementById("other-group");
+      const repoList = document.getElementById("repo-list");
       const status = document.getElementById("repo-status");
       const repoCount = document.getElementById("repo-count");
       const languageCount = document.getElementById("language-count");
+      const sortUpdatedBtn = document.getElementById("sort-updated");
+      const sortAlphaBtn = document.getElementById("sort-alpha");
+
+      let allRepos = [];
+      let currentSort = "updated";
 
       function setStatus(message) {
         status.hidden = false;
@@ -563,28 +575,32 @@
         return item;
       }
 
-      function renderRepositories(repos, message) {
+      function sortRepos(repos, sortMode) {
+        const sorted = repos.slice();
+        if (sortMode === "alpha") {
+          sorted.sort(function (a, b) {
+            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+          });
+        } else {
+          sorted.sort(function (a, b) {
+            return new Date(b.updated_at) - new Date(a.updated_at);
+          });
+        }
+        return sorted;
+      }
+
+      function renderRepositories(repos) {
         const publicRepos = repos.filter(function (repo) {
           return !isLandingPageRepo(repo);
         });
 
         const normalizedRepos = publicRepos.map(normalizeRepoDescription);
-        const withPages = normalizedRepos.filter(function (repo) { return !!repo.has_pages; });
-        const withGitbook = normalizedRepos.filter(function (repo) { return !!repo.has_gitbook; });
-        const withoutPagesOrGitbook = normalizedRepos.filter(function (repo) {
-          return !repo.has_pages && !repo.has_gitbook;
-        });
 
-        pagesList.replaceChildren();
-        gitbookList.replaceChildren();
-        otherList.replaceChildren();
+        repoList.replaceChildren();
 
         if (!publicRepos.length) {
           repoCount.textContent = "0";
           languageCount.textContent = "0";
-          pagesGroup.hidden = true;
-          gitbookGroup.hidden = true;
-          otherGroup.hidden = true;
           setStatus("No public repositories were found yet.");
           return;
         }
@@ -596,42 +612,35 @@
           }
         });
 
-        withPages.forEach(function (repo) {
-          pagesList.appendChild(renderRepository(repo));
-        });
-        withGitbook.forEach(function (repo) {
-          gitbookList.appendChild(renderRepository(repo));
-        });
-        withoutPagesOrGitbook.forEach(function (repo) {
-          otherList.appendChild(renderRepository(repo));
-        });
-
-        pagesGroup.hidden = !withPages.length;
-        gitbookGroup.hidden = !withGitbook.length;
-        otherGroup.hidden = !withoutPagesOrGitbook.length;
-
         repoCount.textContent = String(publicRepos.length);
         languageCount.textContent = String(languages.size);
 
-        if (message) {
-          setStatus(message);
-          return;
-        }
-
+        allRepos = normalizedRepos;
+        applySort(currentSort);
         clearStatus();
       }
+
+      function applySort(sortMode) {
+        currentSort = sortMode;
+        sortUpdatedBtn.setAttribute("aria-pressed", sortMode === "updated" ? "true" : "false");
+        sortAlphaBtn.setAttribute("aria-pressed", sortMode === "alpha" ? "true" : "false");
+
+        const sorted = sortRepos(allRepos, sortMode);
+        repoList.replaceChildren();
+        sorted.forEach(function (repo) {
+          repoList.appendChild(renderRepository(repo));
+        });
+      }
+
+      sortUpdatedBtn.addEventListener("click", function () { applySort("updated"); });
+      sortAlphaBtn.addEventListener("click", function () { applySort("alpha"); });
 
       fetchRepositoriesFromStaticJson()
         .then(function (repos) {
           renderRepositories(repos);
         })
         .catch(function () {
-          pagesList.replaceChildren();
-          gitbookList.replaceChildren();
-          otherList.replaceChildren();
-          pagesGroup.hidden = true;
-          gitbookGroup.hidden = true;
-          otherGroup.hidden = true;
+          repoList.replaceChildren();
           repoCount.textContent = "0";
           languageCount.textContent = "0";
           setStatus("Unable to load repositories from GitHub right now.");
