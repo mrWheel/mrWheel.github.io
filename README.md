@@ -95,6 +95,7 @@ Cards are no longer clickable as a whole. Each card has action buttons:
   - uses `repo.gitbook_url`.
 - `pages` button (Pages cards):
   - uses `repo.pages_url` when available, normalized to end in `/index.html`.
+  - else falls back to `knownPagesIndexUrls[repo.name]` when a manual Pages index override exists.
   - else falls back to `https://{username}.github.io/{repo}/index.html`.
   - this fallback also covers repositories whose Pages source is `/docs` (public URL stays `/{repo}/`)
 - Repositories without GitBook or Pages only get a single `repository` button.
@@ -115,6 +116,7 @@ Two override maps are intentionally hardcoded and must stay current:
 
 - `knownGitbookUrls`: manual GitBook URLs for selected repositories.
 - `knownPagesIndexUrls`: manual Pages URL fixes for repositories that need explicit `index.html`.
+  - include repositories where Pages is configured via `/docs` but API/fallback metadata can be inconsistent (for example `boxGenerator`).
 
 ## Rendered card content
 
