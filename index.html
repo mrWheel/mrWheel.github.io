@@ -387,7 +387,6 @@
   <script>
     (function () {
       const username = "mrWheel";
-      const repoCacheKey = "mrwheel-repositories-cache-v1";
       const pagesList = document.getElementById("pages-repo-list");
       const gitbookList = document.getElementById("gitbook-repo-list");
       const otherList = document.getElementById("other-repo-list");
@@ -507,200 +506,17 @@
         return "https://" + username + ".github.io/" + encodeURIComponent(repo.name) + "/index.html";
       }
 
-      function fetchAllRepositories() {
-        const perPage = 100;
-
-        function fetchPage(page, collected) {
-          const reposApiUrl = "https://api.github.com/users/"
-            + encodeURIComponent(username)
-            + "/repos?per_page="
-            + String(perPage)
-            + "&sort=updated&page="
-            + String(page);
-
-          return fetch(reposApiUrl)
-            .then(function (response) {
-              if (!response.ok) {
-                throw new Error("Request failed with status " + response.status);
-              }
-              return response.json();
-            })
-            .then(function (repos) {
-              const batch = Array.isArray(repos) ? repos : [];
-              const nextCollected = collected.concat(batch);
-              if (batch.length < perPage) {
-                return nextCollected;
-              }
-              return fetchPage(page + 1, nextCollected);
-            });
-        }
-
-        return fetchPage(1, []);
-      }
-
-      function verifyPagesAvailability(repos) {
-        const checks = repos.map(function (repo) {
-          if (!repo || isLandingPageRepo(repo)) {
-            return Promise.resolve(repo);
-          }
-          const fallbackHasPages = !!repo.has_pages;
-
-          const pagesApiUrl = "https://api.github.com/repos/"
-            + encodeURIComponent(username)
-            + "/"
-            + encodeURIComponent(repo.name)
-            + "/pages";
-
-          return fetch(pagesApiUrl)
-            .then(function (response) {
-              if (!response.ok) {
-                return Object.assign({}, repo, { has_pages: fallbackHasPages, pages_url: null });
-              }
-              return response.json()
-                .then(function (pagesInfo) {
-                  return Object.assign({}, repo, {
-                    has_pages: true,
-                    pages_url: pagesInfo && pagesInfo.html_url ? pagesInfo.html_url : null
-                  });
-                })
-                .catch(function () {
-                  return Object.assign({}, repo, { has_pages: true, pages_url: null });
-                });
-            })
-            .catch(function () {
-              return Object.assign({}, repo, { has_pages: fallbackHasPages, pages_url: null });
-            });
-        });
-
-        return Promise.all(checks);
-      }
-
-      function enrichMissingDescriptions(repos) {
-        const checks = repos.map(function (repo) {
-          if (!repo || isLandingPageRepo(repo)) {
-            return Promise.resolve(repo);
-          }
-
-          const normalizedRepo = normalizeRepoDescription(repo);
-          if (normalizedRepo.description) {
-            return Promise.resolve(normalizedRepo);
-          }
-
-          const repoApiUrl = "https://api.github.com/repos/"
-            + encodeURIComponent(username)
-            + "/"
-            + encodeURIComponent(repo.name);
-
-          return fetch(repoApiUrl)
-            .then(function (response) {
-              if (!response.ok) {
-                return normalizedRepo;
-              }
-
-              return response.json()
-                .then(function (repoDetails) {
-                  return Object.assign({}, normalizedRepo, {
-                    description: normalizeDescription(repoDetails && repoDetails.description)
-                  });
-                })
-                .catch(function () {
-                  return normalizedRepo;
-                });
-            })
-            .catch(function () {
-              return normalizedRepo;
-            });
-        });
-
-        return Promise.all(checks);
-      }
-
-      function fetchReadmeGitbookUrl(repo) {
-        const readmeApiUrl = "https://api.github.com/repos/"
-          + encodeURIComponent(username)
-          + "/"
-          + encodeURIComponent(repo.name)
-          + "/readme";
-
-        return fetch(readmeApiUrl)
+      function fetchRepositoriesFromStaticJson() {
+        return fetch("repos.json")
           .then(function (response) {
             if (!response.ok) {
-              return null;
+              throw new Error("Request failed with status " + response.status);
             }
             return response.json();
           })
-          .then(function (readmeInfo) {
-            if (!readmeInfo || !readmeInfo.download_url) {
-              return null;
-            }
-            return fetch(readmeInfo.download_url)
-              .then(function (response) {
-                if (!response.ok) {
-                  return null;
-                }
-                return response.text();
-              })
-              .then(function (content) {
-                return extractGitbookUrl(content);
-              })
-              .catch(function () {
-                return null;
-              });
-          })
-          .catch(function () {
-            return null;
+          .then(function (repos) {
+            return Array.isArray(repos) ? repos : [];
           });
-      }
-
-      function enrichGitbookUrls(repos) {
-        const checks = repos.map(function (repo) {
-          if (!repo || isLandingPageRepo(repo)) {
-            return Promise.resolve(repo);
-          }
-
-          const fromMetadata = getGitbookUrl(repo);
-          if (fromMetadata) {
-            return Promise.resolve(Object.assign({}, repo, { gitbook_url: fromMetadata }));
-          }
-
-          return fetchReadmeGitbookUrl(repo)
-            .then(function (fromReadme) {
-              return Object.assign({}, repo, { gitbook_url: fromReadme });
-            })
-            .catch(function () {
-              return Object.assign({}, repo, { gitbook_url: null });
-            });
-        });
-
-        return Promise.all(checks);
-      }
-
-      function saveRepoCache(repos) {
-        try {
-          const payload = {
-            saved_at: new Date().toISOString(),
-            repos: repos
-          };
-          window.localStorage.setItem(repoCacheKey, JSON.stringify(payload));
-        } catch (error) {
-          // Ignore caching errors.
-        }
-      }
-
-      function loadRepoCache() {
-        try {
-          const raw = window.localStorage.getItem(repoCacheKey);
-          if (!raw) {
-            return null;
-          }
-          const parsed = JSON.parse(raw);
-          if (!parsed || !Array.isArray(parsed.repos)) {
-            return null;
-          }
-          return parsed;
-        } catch (error) {
-          return null;
-        }
       }
 
       function renderRepository(repo, destination) {
@@ -771,11 +587,13 @@
 
       function renderRepositories(repos, message) {
         const publicRepos = repos.filter(function (repo) {
-          return !repo.private && !isLandingPageRepo(repo);
+          return !isLandingPageRepo(repo);
         });
 
         const normalizedRepos = publicRepos.map(function (repo) {
-          return Object.assign({}, repo, { gitbook_url: repo.gitbook_url || getGitbookUrl(repo) });
+          return normalizeRepoDescription(
+            Object.assign({}, repo, { gitbook_url: repo.gitbook_url || getGitbookUrl(repo) })
+          );
         });
         const withPages = normalizedRepos.filter(function (repo) { return !!repo.has_pages; });
         const withGitbook = normalizedRepos.filter(function (repo) { return !!repo.gitbook_url; });
@@ -829,34 +647,16 @@
         clearStatus();
       }
 
-      const initialCache = loadRepoCache();
-      if (initialCache && initialCache.repos && initialCache.repos.length) {
-        renderRepositories(initialCache.repos, "Showing cached repository snapshot.");
-      }
-
-      fetchAllRepositories()
+      fetchRepositoriesFromStaticJson()
         .then(function (repos) {
-          return verifyPagesAvailability(repos);
+          return repos.map(function (repo) {
+            return Object.assign({}, repo, { gitbook_url: getGitbookUrl(repo) });
+          });
         })
         .then(function (repos) {
-          setStatus("Looking up the Description…");
-          return enrichMissingDescriptions(repos);
-        })
-        .then(function (repos) {
-          setStatus("Searching for GitBook links…");
-          return enrichGitbookUrls(repos);
-        })
-        .then(function (repos) {
-          saveRepoCache(repos);
           renderRepositories(repos);
         })
         .catch(function () {
-          const cached = loadRepoCache();
-          if (cached && cached.repos && cached.repos.length) {
-            renderRepositories(cached.repos, "Showing cached repository snapshot.");
-            return;
-          }
-
           pagesList.replaceChildren();
           gitbookList.replaceChildren();
           otherList.replaceChildren();
