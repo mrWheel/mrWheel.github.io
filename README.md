@@ -1,6 +1,6 @@
 # mrWheel.github.io landing page documentation
 
-This repository is a single-page static site served from `index.html`.
+This repository is a single-page dynamic site served from `index.html`.
 Use this document as the source of truth for how the page works and what must stay aligned when editing.
 
 ## Runtime model
