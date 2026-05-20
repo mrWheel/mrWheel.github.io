@@ -429,7 +429,8 @@
     "updated_at": "2026-05-16T13:35:45Z",
     "fork": false,
     "private": false,
-    "has_pages": false
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/ultimateTimer/index.html"
   },
   {
     "name": "DSMRloggerAPI",
@@ -1462,6 +1463,7 @@
           if (!repo || isLandingPageRepo(repo)) {
             return Promise.resolve(repo);
           }
+          const fallbackHasPages = !!repo.has_pages;
 
           if (knownPagesIndexUrls[repo.name]) {
             return Promise.resolve(Object.assign({}, repo, {
@@ -1479,7 +1481,7 @@
           return fetch(pagesApiUrl)
             .then(function (response) {
               if (!response.ok) {
-                return Object.assign({}, repo, { has_pages: false, pages_url: null });
+                return Object.assign({}, repo, { has_pages: fallbackHasPages, pages_url: null });
               }
               return response.json()
                 .then(function (pagesInfo) {
@@ -1493,7 +1495,7 @@
                 });
             })
             .catch(function () {
-              return Object.assign({}, repo, { has_pages: false, pages_url: null });
+              return Object.assign({}, repo, { has_pages: fallbackHasPages, pages_url: null });
             });
         });
 

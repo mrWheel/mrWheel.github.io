@@ -41,6 +41,7 @@ The script follows this order:
    - `GET https://api.github.com/users/{username}/repos?per_page=100&sort=updated`
 2. For each repo, verify GitHub Pages availability through:
    - `GET https://api.github.com/repos/{username}/{repo}/pages`
+   - if this check fails (for example rate limits or unavailable metadata), preserve the `has_pages` value from the repository list response so Pages repos are still detected (including repos published from `/docs`)
 3. **Looking up the Description**: for repositories with missing/placeholder descriptions, display status `"Looking up the Description…"` and fetch details through:
    - `GET https://api.github.com/repos/{username}/{repo}`
 4. Render grouped cards.
@@ -78,6 +79,7 @@ Before rendering:
 Each remaining repository is normalized with a computed `gitbook_url` and then can appear in:
 
 - **GitHub Pages group**: `repo.has_pages === true`
+  - `has_pages` comes from `/users/{username}/repos`; `/pages` metadata is used to enrich `pages_url` when available but does not force-disable already detected Pages repos when unavailable
 - **GitBook group**: `repo.gitbook_url` is non-empty
 - **Other group**: neither Pages nor GitBook
 
@@ -94,6 +96,7 @@ Cards are no longer clickable as a whole. Each card has action buttons:
 - `pages` button (Pages cards):
   - uses `repo.pages_url` when available, normalized to end in `/index.html`.
   - else falls back to `https://{username}.github.io/{repo}/index.html`.
+  - this fallback also covers repositories whose Pages source is `/docs` (public URL stays `/{repo}/`)
 - Repositories without GitBook or Pages only get a single `repository` button.
 
 ## GitBook detection rules
