@@ -1177,8 +1177,8 @@
     "language": "Arduino",
     "updated_at": "2016-12-13T11:14:10Z",
     "stargazers_count": 0,
-    "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/ISBN-978-94-6345-027-0/",
+    "has_pages": false,
+    "pages_url": null,
     "has_gitbook": false,
     "gitbook_url": ""
   }
