@@ -403,19 +403,6 @@
     "gitbook_url": ""
   },
   {
-    "name": "microPythonModules",
-    "description": null,
-    "html_url": "https://github.com/mrWheel/microPythonModules",
-    "homepage": null,
-    "language": "Python",
-    "updated_at": "2025-08-18T15:25:31Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
     "name": "DSMRlogger2HTTP",
     "description": "Draadloze Slimme Meter Uitlezer met webserver",
     "html_url": "https://github.com/mrWheel/DSMRlogger2HTTP",
@@ -633,19 +620,6 @@
     "stargazers_count": 31,
     "has_pages": true,
     "pages_url": "https://mrwheel.github.io/DSMRloggerWS/",
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "SmInrushBooster",
-    "description": null,
-    "html_url": "https://github.com/mrWheel/SmInrushBooster",
-    "homepage": null,
-    "language": "OpenSCAD",
-    "updated_at": "2023-08-25T12:27:25Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
     "has_gitbook": false,
     "gitbook_url": ""
   },
@@ -878,19 +852,6 @@
     "language": "HTML",
     "updated_at": "2021-07-31T11:01:34Z",
     "stargazers_count": 1,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "ATtester",
-    "description": "Simple \"Challenge-Response\" sketch to test (GPRS) modems",
-    "html_url": "https://github.com/mrWheel/ATtester",
-    "homepage": null,
-    "language": "C++",
-    "updated_at": "2021-05-31T09:08:58Z",
-    "stargazers_count": 0,
     "has_pages": false,
     "pages_url": null,
     "has_gitbook": false,
