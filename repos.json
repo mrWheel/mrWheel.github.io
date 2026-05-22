@@ -1,5 +1,31 @@
 [
   {
+    "name": "ultimateTimer",
+    "description": "ESP32 cyclic and 24h timer for a 2.4 inch SPI TFT + EC11 rotary encoder module.",
+    "html_url": "https://github.com/mrWheel/ultimateTimer",
+    "homepage": "https://mrwheel.github.io/ultimateTimer/",
+    "language": "C++",
+    "updated_at": "2026-05-21T12:24:12Z",
+    "stargazers_count": 0,
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/ultimateTimer/",
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
+    "name": "PixelFlow",
+    "description": "a high-performance, non-blocking LED animation engine designed for addressable RGB LED strips (WS2812 / NeoPixel compatible) on ESP32",
+    "html_url": "https://github.com/mrWheel/PixelFlow",
+    "homepage": "https://aandewiel.nl",
+    "language": "C++",
+    "updated_at": "2026-05-21T06:24:20Z",
+    "stargazers_count": 0,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "TFT_LCD_Display_EC11_Board",
     "description": "Piggy Back Board voor TFT LCD Display with EC11 Rotary Encoder",
     "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_Board",
@@ -35,19 +61,6 @@
     "stargazers_count": 0,
     "has_pages": true,
     "pages_url": "https://mrwheel.github.io/boxGenerator/",
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "ultimateTimer",
-    "description": "ESP32 cyclic and 24h timer for a 2.4 inch SPI TFT + EC11 rotary encoder module.",
-    "html_url": "https://github.com/mrWheel/ultimateTimer",
-    "homepage": "https://mrwheel.github.io/ultimateTimer/",
-    "language": "C++",
-    "updated_at": "2026-05-20T10:09:18Z",
-    "stargazers_count": 0,
-    "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/ultimateTimer/",
     "has_gitbook": false,
     "gitbook_url": ""
   },
@@ -221,19 +234,6 @@
     "gitbook_url": ""
   },
   {
-    "name": "IFTTT-Dash-Button",
-    "description": "Sketch for an IFTTT Dash Button with an ESP-01",
-    "html_url": "https://github.com/mrWheel/IFTTT-Dash-Button",
-    "homepage": null,
-    "language": "Arduino",
-    "updated_at": "2026-03-30T01:06:07Z",
-    "stargazers_count": 1,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
     "name": "ESP2RFlink",
     "description": "A bridge from RFlink to internet and MQTT",
     "html_url": "https://github.com/mrWheel/ESP2RFlink",
@@ -358,19 +358,6 @@
     "language": "Python",
     "updated_at": "2026-01-15T23:34:12Z",
     "stargazers_count": 1,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "PixelFlow",
-    "description": null,
-    "html_url": "https://github.com/mrWheel/PixelFlow",
-    "homepage": null,
-    "language": "C++",
-    "updated_at": "2026-01-13T10:49:14Z",
-    "stargazers_count": 0,
     "has_pages": false,
     "pages_url": null,
     "has_gitbook": false,
@@ -702,19 +689,6 @@
     "gitbook_url": ""
   },
   {
-    "name": "cmdParser",
-    "description": "Command Parser over Monitor, Telnet and TCP",
-    "html_url": "https://github.com/mrWheel/cmdParser",
-    "homepage": null,
-    "language": "C",
-    "updated_at": "2022-04-24T10:13:40Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
     "name": "DSMRrecorder",
     "description": "Sketch to capture and write to a file the stream from the Slimme Meter",
     "html_url": "https://github.com/mrWheel/DSMRrecorder",
@@ -806,19 +780,6 @@
     "gitbook_url": ""
   },
   {
-    "name": "ESP8266_Framework",
-    "description": "A Framework for ESP8266 WiFi projects",
-    "html_url": "https://github.com/mrWheel/ESP8266_Framework",
-    "homepage": null,
-    "language": "C++",
-    "updated_at": "2021-10-18T17:44:23Z",
-    "stargazers_count": 1,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
     "name": "I2C_RotaryEncoder_Library",
     "description": "Interface for the I2C_RotaryEncoder slave unit",
     "html_url": "https://github.com/mrWheel/I2C_RotaryEncoder_Library",
@@ -839,19 +800,6 @@
     "language": "JavaScript",
     "updated_at": "2021-08-10T08:32:29Z",
     "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "kicad-templates",
-    "description": null,
-    "html_url": "https://github.com/mrWheel/kicad-templates",
-    "homepage": null,
-    "language": "HTML",
-    "updated_at": "2021-07-31T11:01:34Z",
-    "stargazers_count": 1,
     "has_pages": false,
     "pages_url": null,
     "has_gitbook": false,
@@ -1040,19 +988,6 @@
     "gitbook_url": ""
   },
   {
-    "name": "GitTest",
-    "description": "A repository just to test Git",
-    "html_url": "https://github.com/mrWheel/GitTest",
-    "homepage": null,
-    "language": "C++",
-    "updated_at": "2018-08-28T14:40:07Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
     "name": "kicad-footprints",
     "description": null,
     "html_url": "https://github.com/mrWheel/kicad-footprints",
@@ -1066,64 +1001,12 @@
     "gitbook_url": ""
   },
   {
-    "name": "kicad-symbols",
-    "description": null,
-    "html_url": "https://github.com/mrWheel/kicad-symbols",
-    "homepage": null,
-    "language": "CMake",
-    "updated_at": "2018-08-14T12:07:58Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
     "name": "esp8266-doorbell",
     "description": "Example doorbell written for the ESP8266 using an Adafruit MAX98357 I2S Class-D Mono Amp.",
     "html_url": "https://github.com/mrWheel/esp8266-doorbell",
     "homepage": null,
     "language": "C++",
     "updated_at": "2017-12-10T11:11:07Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "esp8266-wavspiffs",
-    "description": "Read WAV/RIFF audio files from the ESP8266 SPIFFS file system",
-    "html_url": "https://github.com/mrWheel/esp8266-wavspiffs",
-    "homepage": null,
-    "language": "C++",
-    "updated_at": "2017-12-10T11:09:52Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "esp8266-wavplay",
-    "description": "Non blocking WAV file player for the ESP8266",
-    "html_url": "https://github.com/mrWheel/esp8266-wavplay",
-    "homepage": null,
-    "language": "C++",
-    "updated_at": "2017-12-10T11:09:19Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "Cli",
-    "description": "Command Line Interpreter library for Arduino",
-    "html_url": "https://github.com/mrWheel/Cli",
-    "homepage": null,
-    "language": "C++",
-    "updated_at": "2017-11-14T13:00:23Z",
     "stargazers_count": 0,
     "has_pages": false,
     "pages_url": null,
