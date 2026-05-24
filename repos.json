@@ -1,5 +1,18 @@
 [
   {
+    "name": "ESP32MicroCyclesGroovebox",
+    "description": "Elektron inspired ESP32 groovebox",
+    "html_url": "https://github.com/mrWheel/ESP32MicroCyclesGroovebox",
+    "homepage": null,
+    "language": "C++",
+    "updated_at": "2026-05-23T19:29:09Z",
+    "stargazers_count": 0,
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/ESP32MicroCyclesGroovebox/",
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "ultimateTimer",
     "description": "ESP32 cyclic and 24h timer for a 2.4 inch SPI TFT + EC11 rotary encoder module.",
     "html_url": "https://github.com/mrWheel/ultimateTimer",
