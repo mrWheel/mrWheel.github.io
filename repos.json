@@ -1,5 +1,18 @@
 [
   {
+    "name": "TFT_LCD_Display_EC11_ESP32S3_Board",
+    "description": "Piggy Back Board voor TFT_LCD-Display_EC11 for an ESP32-S3 processor",
+    "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_ESP32S3_Board",
+    "homepage": null,
+    "language": "OpenSCAD",
+    "updated_at": "2026-06-14T09:12:20Z",
+    "stargazers_count": 0,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "ESP32S3MicroCyclesGrooveboxR3",
     "description": "Elektron inspired ESP32 groovebox",
     "html_url": "https://github.com/mrWheel/ESP32S3MicroCyclesGrooveboxR3",
@@ -9,19 +22,6 @@
     "stargazers_count": 0,
     "has_pages": true,
     "pages_url": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "TFT_LCD_Display_EC11_ESP32S3_Board",
-    "description": "Piggy Back Board voor TFT_LCD-Display_EC11 for an ESP32-S3 processor",
-    "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_ESP32S3_Board",
-    "homepage": null,
-    "language": "OpenSCAD",
-    "updated_at": "2026-06-13T12:09:23Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
     "has_gitbook": false,
     "gitbook_url": ""
   },
