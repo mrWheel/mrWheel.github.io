@@ -1,5 +1,31 @@
 [
   {
+    "name": "deskAerosolSensor",
+    "description": "This PlatformIO project targets a CYD style ESP32 board with an ILI9341 display and a 3x3 LVGL dashboard. A Desktop device that measures and display the air quality in the room.",
+    "html_url": "https://github.com/mrWheel/deskAerosolSensor",
+    "homepage": "https://willem.aandewiel.nl/index.php/2026/04/11/desktop-air-quality-meter/",
+    "language": "OpenSCAD",
+    "updated_at": "2026-06-16T02:17:25Z",
+    "stargazers_count": 1,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
+    "name": "YAPP_Box",
+    "description": "Yet Another Parametric Projectbox Box",
+    "html_url": "https://github.com/mrWheel/YAPP_Box",
+    "homepage": "https://willem.aandewiel.nl/index.php/2022/01/02/yet-another-parametric-projectbox-generator/",
+    "language": "OpenSCAD",
+    "updated_at": "2026-06-15T19:38:46Z",
+    "stargazers_count": 493,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": true,
+    "gitbook_url": "https://mrwheel-docs.gitbook.io/yappgenerator_en/"
+  },
+  {
     "name": "TFT_LCD_Display_EC11_ESP32S3_Board",
     "description": "Piggy Back Board voor TFT_LCD-Display_EC11 for an ESP32-S3 processor",
     "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_ESP32S3_Board",
@@ -37,19 +63,6 @@
     "pages_url": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32_Board/",
     "has_gitbook": false,
     "gitbook_url": ""
-  },
-  {
-    "name": "YAPP_Box",
-    "description": "Yet Another Parametric Projectbox Box",
-    "html_url": "https://github.com/mrWheel/YAPP_Box",
-    "homepage": "https://willem.aandewiel.nl/index.php/2022/01/02/yet-another-parametric-projectbox-generator/",
-    "language": "OpenSCAD",
-    "updated_at": "2026-06-12T22:40:57Z",
-    "stargazers_count": 492,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": true,
-    "gitbook_url": "https://mrwheel-docs.gitbook.io/yappgenerator_en/"
   },
   {
     "name": "platformIO2arduinoIDE-convertor",
@@ -188,19 +201,6 @@
     "homepage": "https://willem.aandewiel.nl/index.php/2026/03/16/portable-fine-dust-meter-on-batteries/",
     "language": "OpenSCAD",
     "updated_at": "2026-05-18T11:51:51Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "deskAerosolSensor",
-    "description": "This PlatformIO project targets a CYD style ESP32 board with an ILI9341 display and a 3x3 LVGL dashboard. A Desktop device that measures and display the air quality in the room.",
-    "html_url": "https://github.com/mrWheel/deskAerosolSensor",
-    "homepage": "https://willem.aandewiel.nl/index.php/2026/04/11/desktop-air-quality-meter/",
-    "language": "OpenSCAD",
-    "updated_at": "2026-05-18T11:49:20Z",
     "stargazers_count": 0,
     "has_pages": false,
     "pages_url": null,
