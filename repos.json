@@ -1,5 +1,31 @@
 [
   {
+    "name": "arduinoIDE2platformIO-convertor",
+    "description": "This program converts an ArduinoIDE project to a PlatformIO project structure",
+    "html_url": "https://github.com/mrWheel/arduinoIDE2platformIO-convertor",
+    "homepage": "",
+    "language": "Python",
+    "updated_at": "2026-06-17T15:15:55Z",
+    "stargazers_count": 36,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
+    "name": "ESP32S3MicroCyclesGrooveboxR3",
+    "description": "Elektron inspired ESP32 groovebox",
+    "html_url": "https://github.com/mrWheel/ESP32S3MicroCyclesGrooveboxR3",
+    "homepage": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
+    "language": "C++",
+    "updated_at": "2026-06-17T12:39:45Z",
+    "stargazers_count": 0,
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "TFT_LCD_Display_EC11_ESP32S3_Board",
     "description": "Piggy Back Board voor TFT_LCD-Display_EC11 for an ESP32-S3 processor",
     "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_ESP32S3_Board",
@@ -37,19 +63,6 @@
     "pages_url": null,
     "has_gitbook": true,
     "gitbook_url": "https://mrwheel-docs.gitbook.io/yappgenerator_en/"
-  },
-  {
-    "name": "ESP32S3MicroCyclesGrooveboxR3",
-    "description": "Elektron inspired ESP32 groovebox",
-    "html_url": "https://github.com/mrWheel/ESP32S3MicroCyclesGrooveboxR3",
-    "homepage": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
-    "language": "C++",
-    "updated_at": "2026-06-13T14:34:23Z",
-    "stargazers_count": 0,
-    "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
-    "has_gitbook": false,
-    "gitbook_url": ""
   },
   {
     "name": "TFT_LCD_Display_EC11_ESP32_Board",
@@ -228,19 +241,6 @@
     "language": null,
     "updated_at": "2026-05-16T11:16:32Z",
     "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "arduinoIDE2platformIO-convertor",
-    "description": "This program converts an ArduinoIDE project to a PlatformIO project structure",
-    "html_url": "https://github.com/mrWheel/arduinoIDE2platformIO-convertor",
-    "homepage": "",
-    "language": "Python",
-    "updated_at": "2026-04-29T19:55:46Z",
-    "stargazers_count": 35,
     "has_pages": false,
     "pages_url": null,
     "has_gitbook": false,
