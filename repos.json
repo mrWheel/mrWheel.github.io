@@ -1,5 +1,18 @@
 [
   {
+    "name": "ESP32S3MicroCyclesGrooveboxR3",
+    "description": "Elektron inspired ESP32 groovebox",
+    "html_url": "https://github.com/mrWheel/ESP32S3MicroCyclesGrooveboxR3",
+    "homepage": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
+    "language": "C++",
+    "updated_at": "2026-06-18T10:32:51Z",
+    "stargazers_count": 0,
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "arduinoIDE2platformIO-convertor",
     "description": "This program converts an ArduinoIDE project to a PlatformIO project structure",
     "html_url": "https://github.com/mrWheel/arduinoIDE2platformIO-convertor",
@@ -9,19 +22,6 @@
     "stargazers_count": 36,
     "has_pages": false,
     "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "ESP32S3MicroCyclesGrooveboxR3",
-    "description": "Elektron inspired ESP32 groovebox",
-    "html_url": "https://github.com/mrWheel/ESP32S3MicroCyclesGrooveboxR3",
-    "homepage": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
-    "language": "C++",
-    "updated_at": "2026-06-17T12:39:45Z",
-    "stargazers_count": 0,
-    "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
     "has_gitbook": false,
     "gitbook_url": ""
   },
