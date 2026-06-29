@@ -1,11 +1,24 @@
 [
   {
+    "name": "highTempLogger",
+    "description": "A High Temperature Logger for a OONI KODA12 Pizza Oven",
+    "html_url": "https://github.com/mrWheel/highTempLogger",
+    "homepage": null,
+    "language": "C++",
+    "updated_at": "2026-06-28T19:52:50Z",
+    "stargazers_count": 0,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "ESP32S3MicroCyclesGrooveboxR3",
     "description": "Elektron inspired ESP32 groovebox",
     "html_url": "https://github.com/mrWheel/ESP32S3MicroCyclesGrooveboxR3",
     "homepage": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
     "language": "C++",
-    "updated_at": "2026-06-27T14:18:52Z",
+    "updated_at": "2026-06-28T09:38:07Z",
     "stargazers_count": 0,
     "has_pages": true,
     "pages_url": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
