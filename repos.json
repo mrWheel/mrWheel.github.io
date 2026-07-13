@@ -1,5 +1,31 @@
 [
   {
+    "name": "TFT_LCD_Display_EC11_ESP32_PiggybackBoard",
+    "description": "Piggy Back Board voor TFT LCD Display with EC11 Rotary Encoder",
+    "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_ESP32_PiggybackBoard",
+    "homepage": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32_PiggybackBoard/",
+    "language": "OpenSCAD",
+    "updated_at": "2026-07-12T12:37:30Z",
+    "stargazers_count": 0,
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32_PiggybackBoard/",
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
+    "name": "TheGrooveboxProject",
+    "description": "Elektron inspired ESP32 groovebox",
+    "html_url": "https://github.com/mrWheel/TheGrooveboxProject",
+    "homepage": "https://mrwheel.github.io/TheGrooveboxProject/",
+    "language": "C++",
+    "updated_at": "2026-07-12T12:15:58Z",
+    "stargazers_count": 0,
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/TheGrooveboxProject/",
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "YAPP_Box",
     "description": "Yet Another Parametric Projectbox Box",
     "html_url": "https://github.com/mrWheel/YAPP_Box",
@@ -52,19 +78,6 @@
     "gitbook_url": ""
   },
   {
-    "name": "ESP32S3MicroCyclesGrooveboxR3",
-    "description": "Elektron inspired ESP32 groovebox",
-    "html_url": "https://github.com/mrWheel/ESP32S3MicroCyclesGrooveboxR3",
-    "homepage": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
-    "language": "C++",
-    "updated_at": "2026-06-28T09:38:07Z",
-    "stargazers_count": 0,
-    "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/ESP32S3MicroCyclesGrooveboxR3/",
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
     "name": "platformIO2arduinoIDE-convertor",
     "description": "A PlatformIO to ArduinoIDE convertor",
     "html_url": "https://github.com/mrWheel/platformIO2arduinoIDE-convertor",
@@ -100,19 +113,6 @@
     "stargazers_count": 1,
     "has_pages": false,
     "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "TFT_LCD_Display_EC11_ESP32_Board",
-    "description": "Piggy Back Board voor TFT LCD Display with EC11 Rotary Encoder",
-    "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_ESP32_Board",
-    "homepage": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32_Board/",
-    "language": "OpenSCAD",
-    "updated_at": "2026-06-13T09:45:15Z",
-    "stargazers_count": 0,
-    "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32_Board/",
     "has_gitbook": false,
     "gitbook_url": ""
   },
