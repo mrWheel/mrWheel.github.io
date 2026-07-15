@@ -1,16 +1,29 @@
 [
   {
-    "name": "TFT_LCD_Display_EC11_ESP32_PiggybackBoard",
+    "name": "TFT_LCD_Display_EC11_ESP32S3_PiggybackBoard",
     "description": "Piggy Back Board voor TFT LCD Display with EC11 Rotary Encoder",
-    "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_ESP32_PiggybackBoard",
-    "homepage": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32_PiggybackBoard/",
-    "language": "OpenSCAD",
-    "updated_at": "2026-07-12T12:37:30Z",
+    "html_url": "https://github.com/mrWheel/TFT_LCD_Display_EC11_ESP32S3_PiggybackBoard",
+    "homepage": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32S3_PiggybackBoard/",
+    "language": "HTML",
+    "updated_at": "2026-07-14T13:43:51Z",
     "stargazers_count": 0,
     "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32_PiggybackBoard/",
+    "pages_url": "https://mrwheel.github.io/TFT_LCD_Display_EC11_ESP32S3_PiggybackBoard/",
     "has_gitbook": false,
     "gitbook_url": ""
+  },
+  {
+    "name": "YAPP_Box",
+    "description": "Yet Another Parametric Projectbox Box",
+    "html_url": "https://github.com/mrWheel/YAPP_Box",
+    "homepage": "https://willem.aandewiel.nl/index.php/2022/01/02/yet-another-parametric-projectbox-generator/",
+    "language": "OpenSCAD",
+    "updated_at": "2026-07-14T05:42:33Z",
+    "stargazers_count": 500,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": true,
+    "gitbook_url": "https://mrwheel-docs.gitbook.io/yappgenerator_en/"
   },
   {
     "name": "TheGrooveboxProject",
@@ -24,19 +37,6 @@
     "pages_url": "https://mrwheel.github.io/TheGrooveboxProject/",
     "has_gitbook": false,
     "gitbook_url": ""
-  },
-  {
-    "name": "YAPP_Box",
-    "description": "Yet Another Parametric Projectbox Box",
-    "html_url": "https://github.com/mrWheel/YAPP_Box",
-    "homepage": "https://willem.aandewiel.nl/index.php/2022/01/02/yet-another-parametric-projectbox-generator/",
-    "language": "OpenSCAD",
-    "updated_at": "2026-07-12T02:23:27Z",
-    "stargazers_count": 501,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": true,
-    "gitbook_url": "https://mrwheel-docs.gitbook.io/yappgenerator_en/"
   },
   {
     "name": "arduinoIDE2platformIO-convertor",
