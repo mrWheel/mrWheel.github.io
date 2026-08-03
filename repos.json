@@ -1,5 +1,18 @@
 [
   {
+    "name": "ESP32BluetoothAudioSlave",
+    "description": null,
+    "html_url": "https://github.com/mrWheel/ESP32BluetoothAudioSlave",
+    "homepage": null,
+    "language": "Makefile",
+    "updated_at": "2026-08-02T11:53:04Z",
+    "stargazers_count": 0,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "YAPP_Box",
     "description": "Yet Another Parametric Projectbox Box",
     "html_url": "https://github.com/mrWheel/YAPP_Box",
