@@ -1,5 +1,18 @@
 [
   {
+    "name": "templateRepo",
+    "description": "A dummy Repo with scripts for all real Repo’s",
+    "html_url": "https://github.com/mrWheel/templateRepo",
+    "homepage": null,
+    "language": "Python",
+    "updated_at": "2026-08-14T10:44:45Z",
+    "stargazers_count": 0,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "TheGrooveboxProject",
     "description": "Elektron inspired ESP32 groovebox",
     "html_url": "https://github.com/mrWheel/TheGrooveboxProject",
@@ -9,19 +22,6 @@
     "stargazers_count": 1,
     "has_pages": true,
     "pages_url": "https://mrwheel.github.io/TheGrooveboxProject/",
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "templateRepo",
-    "description": "A dummy Repo with scripts for all real Repo’s",
-    "html_url": "https://github.com/mrWheel/templateRepo",
-    "homepage": null,
-    "language": "Python",
-    "updated_at": "2026-08-12T12:41:27Z",
-    "stargazers_count": 0,
-    "has_pages": false,
-    "pages_url": null,
     "has_gitbook": false,
     "gitbook_url": ""
   },
