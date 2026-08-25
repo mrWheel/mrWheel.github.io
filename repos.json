@@ -1,5 +1,18 @@
 [
   {
+    "name": "YAPP_Box",
+    "description": "Yet Another Parametric Projectbox Box",
+    "html_url": "https://github.com/mrWheel/YAPP_Box",
+    "homepage": "https://willem.aandewiel.nl/index.php/2022/01/02/yet-another-parametric-projectbox-generator/",
+    "language": "OpenSCAD",
+    "updated_at": "2026-08-24T12:16:10Z",
+    "stargazers_count": 508,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": true,
+    "gitbook_url": "https://mrwheel-docs.gitbook.io/yappgenerator_en/"
+  },
+  {
     "name": "otaExample",
     "description": null,
     "html_url": "https://github.com/mrWheel/otaExample",
@@ -24,19 +37,6 @@
     "pages_url": null,
     "has_gitbook": false,
     "gitbook_url": ""
-  },
-  {
-    "name": "YAPP_Box",
-    "description": "Yet Another Parametric Projectbox Box",
-    "html_url": "https://github.com/mrWheel/YAPP_Box",
-    "homepage": "https://willem.aandewiel.nl/index.php/2022/01/02/yet-another-parametric-projectbox-generator/",
-    "language": "OpenSCAD",
-    "updated_at": "2026-08-15T07:24:44Z",
-    "stargazers_count": 507,
-    "has_pages": false,
-    "pages_url": null,
-    "has_gitbook": true,
-    "gitbook_url": "https://mrwheel-docs.gitbook.io/yappgenerator_en/"
   },
   {
     "name": "templateRepo",
