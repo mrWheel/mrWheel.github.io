@@ -1,5 +1,18 @@
 [
   {
+    "name": "DSMRloggerWS",
+    "description": "New firmware for the DSMRlogger heavily using WebSockets and Javascript",
+    "html_url": "https://github.com/mrWheel/DSMRloggerWS",
+    "homepage": "https://willem.aandewiel.nl/index.php/2019/04/09/dsmr-logger-v4-slimme-meter-uitlezer/",
+    "language": "HTML",
+    "updated_at": "2026-08-27T11:29:25Z",
+    "stargazers_count": 30,
+    "has_pages": true,
+    "pages_url": "https://mrwheel.github.io/DSMRloggerWS/",
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "YAPP_Box",
     "description": "Yet Another Parametric Projectbox Box",
     "html_url": "https://github.com/mrWheel/YAPP_Box",
@@ -685,19 +698,6 @@
     "stargazers_count": 0,
     "has_pages": false,
     "pages_url": null,
-    "has_gitbook": false,
-    "gitbook_url": ""
-  },
-  {
-    "name": "DSMRloggerWS",
-    "description": "New firmware for the DSMRlogger heavily using WebSockets and Javascript",
-    "html_url": "https://github.com/mrWheel/DSMRloggerWS",
-    "homepage": "https://willem.aandewiel.nl/index.php/2019/04/09/dsmr-logger-v4-slimme-meter-uitlezer/",
-    "language": "HTML",
-    "updated_at": "2023-08-26T19:24:53Z",
-    "stargazers_count": 31,
-    "has_pages": true,
-    "pages_url": "https://mrwheel.github.io/DSMRloggerWS/",
     "has_gitbook": false,
     "gitbook_url": ""
   },
