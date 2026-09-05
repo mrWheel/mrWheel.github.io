@@ -38,7 +38,7 @@ in `has_gitbook: false` and `gitbook_url: ""`.
 
 ## How often is repos.json updated?
 
-The workflow runs **daily at 03:00 UTC** (schedule: `0 3 * * *`).  
+The workflow runs **weekly at 03:00 UTC on Sunday** (schedule: `0 3 * * 0`).  
 You can also trigger it manually at any time — see the next section.
 
 ## How to run the workflow manually
