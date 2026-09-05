@@ -17,6 +17,7 @@ GitHub Action (update-repos.yml)
 - **No build step, bundler, or framework.** The page is plain HTML + CSS + JavaScript.
 - **No GitHub API calls from the browser.** All API calls are made inside the GitHub Action.
 - `repos.json` is the single data source for the landing page.
+- GitHub Pages deployment runs through `.github/workflows/deploy-pages.yml` with **Node.js 24**.
 
 ## How repos.json is generated
 
@@ -93,4 +94,3 @@ The following IDs must not be renamed without also updating the JavaScript:
 `repo-list`,  
 `repo-status`, `repo-count`, `language-count`,  
 `sort-updated`, `sort-alpha`
-
