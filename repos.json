@@ -1,12 +1,25 @@
 [
   {
+    "name": "tripTracker",
+    "description": "TripTracker to log your trips",
+    "html_url": "https://github.com/mrWheel/tripTracker",
+    "homepage": "",
+    "language": "C",
+    "updated_at": "2026-09-19T14:30:58Z",
+    "stargazers_count": 0,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "YAPP_Box",
     "description": "Yet Another Parametric Projectbox Box",
     "html_url": "https://github.com/mrWheel/YAPP_Box",
     "homepage": "https://willem.aandewiel.nl/index.php/2022/01/02/yet-another-parametric-projectbox-generator/",
     "language": "OpenSCAD",
-    "updated_at": "2026-09-12T08:52:27Z",
-    "stargazers_count": 513,
+    "updated_at": "2026-09-18T21:29:18Z",
+    "stargazers_count": 515,
     "has_pages": false,
     "pages_url": null,
     "has_gitbook": true,
