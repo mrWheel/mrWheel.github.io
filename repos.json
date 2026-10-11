@@ -1,12 +1,25 @@
 [
   {
+    "name": "esp32s3-retro",
+    "description": null,
+    "html_url": "https://github.com/mrWheel/esp32s3-retro",
+    "homepage": null,
+    "language": "C",
+    "updated_at": "2026-10-11T09:31:16Z",
+    "stargazers_count": 0,
+    "has_pages": false,
+    "pages_url": null,
+    "has_gitbook": false,
+    "gitbook_url": ""
+  },
+  {
     "name": "YAPP_Box",
     "description": "Yet Another Parametric Projectbox Box",
     "html_url": "https://github.com/mrWheel/YAPP_Box",
     "homepage": "https://willem.aandewiel.nl/index.php/2022/01/02/yet-another-parametric-projectbox-generator/",
     "language": "OpenSCAD",
-    "updated_at": "2026-10-03T00:11:03Z",
-    "stargazers_count": 520,
+    "updated_at": "2026-10-08T19:50:39Z",
+    "stargazers_count": 522,
     "has_pages": false,
     "pages_url": null,
     "has_gitbook": true,
